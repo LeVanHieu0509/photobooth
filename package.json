@@ -1,0 +1,69 @@
+{
+  "name": "adh-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3030 ",
+    "build": "next build",
+    "start": "next start -p 3030",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.8.8",
+    "@heroicons/react": "^2.0.18",
+    "@material-tailwind/react": "^2.1.2",
+    "@types/react-input-mask": "^3.0.5",
+    "autoprefixer": "^10.4.20",
+    "axios": "^1.6.5",
+    "dotenv": "^16.3.1",
+    "graphql": "^16.8.1",
+    "lodash": "^4.17.21",
+    "moment": "^2.30.1",
+    "moment-timezone": "^0.5.43",
+    "next": "14.0.4",
+    "query-string": "^8.1.0",
+    "querystring": "^0.2.1",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-icons": "^5.3.0",
+    "react-input-mask": "^2.0.4",
+    "react-number-format": "^5.4.0",
+    "react-toastify": "^9.1.3",
+    "slugify": "^1.6.6",
+    "styled-components": "^6.1.2",
+    "swiper": "^11.1.11",
+    "tailgrids": "^2.2.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/typography": "^0.5.9",
+    "@types/lodash": "^4.14.202",
+    "@types/node": "^20",
+    "@types/react": "v18.2.19",
+    "@types/react-dom": "^18",
+    "@types/styled-components": "^5.1.34",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.4",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.1",
+    "lint-staged": "^15.2.0",
+    "postcss": "^8.4.27",
+    "prettier": "^3.1.1",
+    "prettier-plugin-tailwindcss": "^0.4.1",
+    "tailwindcss": "^3.3.3",
+    "typescript": "^5"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json}": [
+      "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json}\""
+    ]
+  },
+  "prettier": {
+    "printWidth": 120,
+    "trailingComma": "es5",
+    "endOfLine": "auto",
+    "arrowParens": "always",
+    "semi": true,
+    "singleQuote": false
+  }
+}

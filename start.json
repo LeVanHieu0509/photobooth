@@ -1,0 +1,16 @@
+{
+  "apps": [
+    {
+      "name": "adh-web-1338",
+      "script": "node_modules/next/dist/bin/next",
+      "args": ["start", "-p", "3027"],
+      "instances": "1",
+      "instance_var": "INSTANCE_ID",
+      "exec_mode": "cluster",
+      "cwd": "./",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  ]
+}
