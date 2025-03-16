@@ -186,3 +186,4 @@ package-lock.json
 .vs/slnx.sqlite
 .vs/ezi-web-ui/v15/.suo
 .vs/VSWorkspaceState.json
+src/components/photobooth/
