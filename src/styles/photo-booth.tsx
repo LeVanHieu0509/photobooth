@@ -26,7 +26,6 @@ export const styleBooth = css`
   .navbar {
     width: auto;
     max-width: 100%;
-    margin: 20px auto 0;
     display: flex;
     justify-content: center;
     align-items: center;
