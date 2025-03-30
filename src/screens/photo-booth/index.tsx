@@ -195,8 +195,8 @@ const PhotoBoothScreen = () => {
         isMobile,
       });
 
-      const targetWidth = 1280;
-      const targetHeight = 720;
+      const targetWidth = video.videoWidth;
+      const targetHeight = video.videoHeight;
 
       canvas.width = targetWidth;
       canvas.height = targetHeight;
@@ -260,8 +260,8 @@ const PhotoBoothScreen = () => {
               className="video-feed"
               style={{
                 filter: cssFilter,
-                width: "100%",
-                height: "100%",
+                // width: "100%",
+                // height: "100%",
                 objectFit: "cover",
               }}
             />

@@ -66,7 +66,7 @@ export const styleBooth = css`
     transition: all 0.3s ease;
     background: none !important;
     white-space: nowrap;
-    border-radius: 20px;
+    /* border-radius: 20px; */
   }
 
   .navbar a:hover {
@@ -880,6 +880,7 @@ export const styleBooth = css`
     .home-container h1 {
       font-size: 2.2rem;
       margin-bottom: 15px;
+      /* width: 300px; */
     }
 
     .welcome-container h1 {
@@ -921,7 +922,7 @@ export const styleBooth = css`
       top: 0;
       right: 0;
       flex-direction: column;
-      background-color: rgba(255, 255, 255, 0.95);
+      background-color: rgba(255, 255, 255, 1);
       width: 80%;
       height: 100vh;
       padding: 60px 20px 20px;
@@ -945,13 +946,11 @@ export const styleBooth = css`
       padding: 0;
       left: 0;
       position: relative;
-      margin-left: -10px;
-      margin-right: -10px;
       overflow: hidden;
     }
 
     .video-feed {
-      width: 100%;
+      width: 90%;
       height: 100%;
       max-height: none;
       aspect-ratio: 4/3;
@@ -1094,7 +1093,6 @@ export const styleBooth = css`
     }
 
     .video-feed {
-      width: 100%;
       max-width: 600px;
       height: auto;
       aspect-ratio: 4/3;
@@ -1147,7 +1145,7 @@ export const styleBooth = css`
       right: 0;
       height: 100vh;
       width: 250px;
-      background-color: rgba(255, 255, 255, 0.95);
+      background-color: rgba(255, 255, 255, 1);
       flex-direction: column;
       gap: 20px;
       padding: 60px 20px;
