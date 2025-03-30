@@ -413,9 +413,9 @@ const PhotoPreviewScreen = () => {
         <div className="control-section">
           <p className="section-title">Frames</p>
           <div className="frame-options">
-            <button onClick={() => setSelectedFrame("mofusandImage")}>Option 1</button>
-            <button onClick={() => setSelectedFrame("shinChanImage")}>Option 2</button>
-            <button onClick={() => setSelectedFrame("miffyImage")}>Option 3</button>
+            <button onClick={() => setSelectedFrame("mofusandImage")}>Serenity</button>
+            <button onClick={() => setSelectedFrame("shinChanImage")}>Blossom</button>
+            <button onClick={() => setSelectedFrame("miffyImage")}>Enternal</button>
           </div>
         </div>
 
