@@ -28,7 +28,7 @@ export default async function HomePage({
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
   return (
-    <div className="pt-50">
+    <div className="">
       <Suspense>
         <HomepageScreen />
       </Suspense>

@@ -12,7 +12,7 @@ interface PhotoPreviewScreenProps {}
 /* Mofusand frame */
 const drawMofusandFrame = (ctx: any, canvas: any) => {
   const frameImg = new Image();
-  frameImg.src = `${process.env.basePath}/img/mofusand-frame.png`;
+  frameImg.src = `${process.env.basePath}/img/serenity.png`;
 
   frameImg.onload = () => {
     ctx.drawImage(frameImg, 0, 0, canvas.width, canvas.height);
@@ -22,7 +22,7 @@ const drawMofusandFrame = (ctx: any, canvas: any) => {
 /* Crayon Shin Chan Frame */
 const drawShinChanFrame = (ctx: any, canvas: any) => {
   const frameImg = new Image();
-  frameImg.src = `${process.env.basePath}/img/shin-chan.png`;
+  frameImg.src = `${process.env.basePath}/img/blossom.png`;
 
   frameImg.onload = () => {
     ctx.drawImage(frameImg, 0, 0, canvas.width, canvas.height);
@@ -32,7 +32,7 @@ const drawShinChanFrame = (ctx: any, canvas: any) => {
 /* Miffy Frame */
 const drawMiffyFrame = (ctx: any, canvas: any) => {
   const frameImg = new Image();
-  frameImg.src = `${process.env.basePath}/img//miffy-frame.png`;
+  frameImg.src = `${process.env.basePath}/img/enternal.png`;
 
   frameImg.onload = () => {
     ctx.drawImage(frameImg, 0, 0, canvas.width, canvas.height);

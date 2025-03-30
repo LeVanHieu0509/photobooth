@@ -10,7 +10,7 @@ const HomepageScreen = ({}: HomepageProps) => {
 
   return (
     <HomepageWrapper>
-      <div className="background-gradient h-screen flex  flex-col justify-center items-center text-center">
+      <div className=" background-gradient h-screen flex  flex-col justify-center items-center text-center">
         <div className="home-container">
           <h1 className="text-5xl font-bold text-pink-600 mb-4">picapica</h1>
           <p className="text-lg text-gray-700 mb-6">

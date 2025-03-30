@@ -12,7 +12,7 @@ export const metadata = {
 
 export default async function WelcomePage() {
   return (
-    <div className="pt-50">
+    <div>
       <Suspense>
         <ThanksScreen />
       </Suspense>

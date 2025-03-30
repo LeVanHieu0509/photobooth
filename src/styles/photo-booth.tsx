@@ -199,13 +199,13 @@ export const styleBooth = css`
   }
 
   .privacy-container h1 {
-    font-family: "Poppins", sans-serif;
+    font-family: var(--fwd-font), "Poppins", sans-serif !important;
     font-size: 2.5rem;
     margin-bottom: 25px;
   }
 
   .privacy-container p {
-    font-family: "Poppins", sans-serif;
+    font-family: var(--fwd-font), "Poppins", sans-serif !important;
     font-size: 1.1rem;
     line-height: 1.6;
     color: #333;
@@ -252,7 +252,7 @@ export const styleBooth = css`
   .contact-form h2 {
     text-align: center;
     margin-bottom: 20px;
-    font-family: "Arial", sans-serif;
+    font-family: var(--fwd-font), "Arial", sans-serif !important;
     color: #333;
   }
 
@@ -263,7 +263,7 @@ export const styleBooth = css`
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
-    font-family: "Arial", sans-serif;
+    font-family: var(--fwd-font), "Arial", sans-serif !important;
     box-sizing: border-box;
     margin-bottom: 15px;
   }
@@ -346,12 +346,12 @@ export const styleBooth = css`
   .countdown {
     position: relative;
     text-align: center;
-    font-size: 50px;
+    font-size: 45px;
     font-weight: bold;
     color: red;
     margin: 20px 0;
     background: rgba(255, 255, 255, 0.8);
-    padding: 10px 20px;
+    padding: 10px 15px;
     border-radius: 10px;
     animation: countdown-animation 0.5s ease-in-out alternate infinite;
   }
@@ -829,7 +829,7 @@ export const styleBooth = css`
   }
 
   .home-container h1 {
-    font-family: "Poppins", sans-serif;
+    font-family: var(--fwd-font), "Poppins", sans-serif;
     font-size: 3rem;
     margin: 0;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);

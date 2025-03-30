@@ -13,7 +13,7 @@ module.exports = withMT({
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-inter)"],
+        sans: ["var(--fwd-font)"],
       },
       keyframes: {
         fadeIn: {

@@ -3,6 +3,7 @@ import { ensureStartsWith } from "@/utils";
 import { ReactNode } from "react";
 import StyledComponentsRegistry from "../../lib/registry";
 import "../../src/styles/global.css";
+import localFont from "next/font/local";
 
 const { TWITTER_CREATOR, TWITTER_SITE, SITE_NAME } = process.env;
 const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
@@ -30,10 +31,32 @@ export const metadata = {
       },
     }),
 };
+const fwdFont = localFont({
+  src: [
+    {
+      path: "../../public/fonts/Sobotia-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Sobotia-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Sobotia-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  display: "swap",
+  preload: true,
+  variable: "--fwd-font",
+});
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="vi">
+    <html lang="vi" className={`${fwdFont.variable}`}>
       <StyledComponentsRegistry>
         <body>
           <AppWrapper>{children}</AppWrapper>
