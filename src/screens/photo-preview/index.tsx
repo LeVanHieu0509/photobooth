@@ -217,8 +217,8 @@ const PhotoPreviewScreen = () => {
 
     const imgWidth = 400;
     const imgHeight = 300;
-    const borderSize = 40;
-    const photoSpacing = 20;
+    const borderSize = 37;
+    const photoSpacing = 19;
     const textHeight = 50;
     const totalHeight = imgHeight * 4 + photoSpacing * 3 + borderSize * 2 + textHeight;
 
@@ -413,9 +413,9 @@ const PhotoPreviewScreen = () => {
         <div className="control-section">
           <p className="section-title">Frames</p>
           <div className="frame-options">
-            <button onClick={() => setSelectedFrame("mofusandImage")}>Mofusand</button>
-            <button onClick={() => setSelectedFrame("shinChanImage")}>Shin Chan</button>
-            <button onClick={() => setSelectedFrame("miffyImage")}>Miffy</button>
+            <button onClick={() => setSelectedFrame("mofusandImage")}>Option 1</button>
+            <button onClick={() => setSelectedFrame("shinChanImage")}>Option 2</button>
+            <button onClick={() => setSelectedFrame("miffyImage")}>Option 3</button>
           </div>
         </div>
 

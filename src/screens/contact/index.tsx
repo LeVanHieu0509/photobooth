@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 import { ContactBoothScreenWrapper } from "./styled";
+import { Flex } from "@/styles/common";
+import { useRouter } from "next/navigation";
 
 const ContactBoothScreen = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,6 +26,7 @@ const ContactBoothScreen = () => {
     setIsSubmitting(true);
     setStatus("Sending message...");
     console.log({ formData });
+    router.push("/thanks");
   };
 
   return (
@@ -54,7 +58,9 @@ const ContactBoothScreen = () => {
               onChange={handleChange}
               required
             ></textarea>
-            <button type="submit">Send Message</button>
+            <Flex justify="center">
+              <button type="submit">Send Message</button>
+            </Flex>
           </form>
           {status && <p className="status-message">{status}</p>}
 
