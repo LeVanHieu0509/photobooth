@@ -88,7 +88,7 @@ const PhotoBoothScreen = () => {
     const data = imageData.data;
 
     switch (filterType) {
-      case "smooth-skin":
+      case "brighten":
         // Soft effect with adjusted brightness, contrast, saturation and a little blur
         for (let i = 0; i < data.length; i += 4) {
           // Điều chỉnh độ sáng (brightness)
@@ -120,7 +120,7 @@ const PhotoBoothScreen = () => {
 
   useEffect(() => {
     switch (filter) {
-      case "smooth-skin":
+      case "brighten":
         setCssFilter("brightness(105%) contrast(95%) saturate(110%)");
         break;
       default:
@@ -301,8 +301,8 @@ const PhotoBoothScreen = () => {
             Normal
           </button>
 
-          <button onClick={() => setFilter("smooth-skin")} disabled={capturing}>
-            Smooth skin
+          <button onClick={() => setFilter("brighten")} disabled={capturing}>
+            Brighten
           </button>
         </div>
       </div>
