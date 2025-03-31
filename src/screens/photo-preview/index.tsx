@@ -423,11 +423,11 @@ const PhotoPreviewScreen = () => {
 
         <div className="control-section">
           <div className="action-buttons">
-            <button onClick={downloadPhotoStrip}>📥 Download Photo Strip</button>
+            <button onClick={downloadPhotoStrip}> Download Photo Strip</button>
             <button onClick={generateQRCode} disabled={isGeneratingQR}>
-              {isGeneratingQR ? "Generating..." : "🔗 Download via QR Code"}
+              {isGeneratingQR ? "Generating..." : " Download via QR Code"}
             </button>
-            <button onClick={() => navigate.push("/photobooth")}>🔄 Take New Photos</button>
+            <button onClick={() => navigate.push("/photobooth")}> Take New Photos</button>
           </div>
 
           {qrCodeUrl && (

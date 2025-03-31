@@ -50,7 +50,7 @@ const style = css`
 
   html,
   body {
-    font-family: var(--fwd-font);
+    font-family: var(--font-inter);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
@@ -105,19 +105,19 @@ const style = css`
   h2,
   h3,
   h4,
-  h5,
-  h6 {
+  h5
+   {
     margin: 0px;
     letter-spacing: 0;
     font-family: var(--fwd-font) !important;
   }
 
   span {
-    font-family: var(--fwd-font) !important;
+    font-family: var(--font-inter) !important;
   }
 
   p {
-    font-family: var(--fwd-font) !important;
+    font-family: var(--font-inter) !important;
   }
 
   h1 {

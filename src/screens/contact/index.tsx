@@ -66,7 +66,7 @@ const ContactBoothScreen = () => {
 
           <div style={{ marginTop: "20px", fontSize: "0.9rem", textAlign: "center" }}>
             <p>If you're having trouble with the contact form, you can also reach me directly at:</p>
-            <p style={{ fontWeight: "bold", marginTop: "5px" }}>agnes@picapicabooth.com</p>
+            <p style={{ fontWeight: "bold", marginTop: "5px" }}>lethaikimphuc@gmail.com</p>
           </div>
         </div>
       </div>
