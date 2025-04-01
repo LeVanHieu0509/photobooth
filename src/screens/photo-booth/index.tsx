@@ -119,9 +119,9 @@ const PhotoBoothScreen = () => {
 
           // Điều chỉnh độ tương phản (contrast) - giảm 15% độ tương phản (85%)
           const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
-          data[i] = data[i] * 1.15 + avg * 0.15; // R component
-          data[i + 1] = data[i + 1] * 1.15 + avg * 0.15; // G component
-          data[i + 2] = data[i + 2] * 1.15 + avg * 0.15; // B component
+          data[i] = data[i] * 1.2 + avg * 0.2; // R component
+          data[i + 1] = data[i + 1] * 1.2 + avg * 0.2; // G component
+          data[i + 2] = data[i + 2] * 1.2 + avg * 0.2; // B component
 
           // Điều chỉnh độ bão hòa (saturation) - giảm độ bão hòa nhẹ
           const avgColor = (data[i] + data[i + 1] + data[i + 2]) / 3;
@@ -155,9 +155,9 @@ const PhotoBoothScreen = () => {
 
           // Tăng độ đen (black) bằng cách làm tối các kênh màu
           // Giảm giá trị các kênh màu để làm tăng độ tối (black)
-          data[i] = data[i] * 1.03; // Tăng đen cho màu đỏ (R)
-          data[i + 1] = data[i + 1] * 1.03; // Tăng đen cho màu xanh lá (G)
-          data[i + 2] = data[i + 2] * 1.03; // Tăng đen cho màu xanh dương (B)
+          data[i] = data[i] * 1.1; // Tăng đen cho màu đỏ (R)
+          data[i + 1] = data[i + 1] * 1.1; // Tăng đen cho màu xanh lá (G)
+          data[i + 2] = data[i + 2] * 1.1; // Tăng đen cho màu xanh dương (B)
 
           // Thêm highlights (Tăng sáng cho các vùng sáng)
           // Tăng các kênh màu nếu giá trị của chúng đã cao (tạo điểm sáng nổi bật)
