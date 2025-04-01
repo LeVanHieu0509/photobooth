@@ -113,66 +113,66 @@ const PhotoBoothScreen = () => {
         // Soft effect with adjusted brightness, contrast, saturation, and slight blur
         for (let i = 0; i < data.length; i += 4) {
           // Điều chỉnh độ sáng (brightness) - tăng nhẹ độ sáng 105%
-          data[i] = Math.min(255, data[i] * 1.2); // R component
-          data[i + 1] = Math.min(255, data[i + 1] * 1.2); // G component
-          data[i + 2] = Math.min(255, data[i + 2] * 1.2); // B component
+          data[i] = Math.min(255, data[i] * 1.1); // R component
+          data[i + 1] = Math.min(255, data[i + 1] * 1.1); // G component
+          data[i + 2] = Math.min(255, data[i + 2] * 1.1); // B component
 
           // Điều chỉnh độ tương phản (contrast) - giảm 15% độ tương phản (85%)
           const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
-          data[i] = data[i] * 1.2 + avg * 0.2; // R component
-          data[i + 1] = data[i + 1] * 1.2 + avg * 0.2; // G component
-          data[i + 2] = data[i + 2] * 1.2 + avg * 0.2; // B component
+          data[i] = data[i] * 0.95 + avg * 0.05; // R component
+          data[i + 1] = data[i + 1] * 0.95 + avg * 0.05; // G component
+          data[i + 2] = data[i + 2] * 0.95 + avg * 0.05; // B component
 
-          // Điều chỉnh độ bão hòa (saturation) - giảm độ bão hòa nhẹ
-          const avgColor = (data[i] + data[i + 1] + data[i + 2]) / 3;
+          // // Điều chỉnh độ bão hòa (saturation) - giảm độ bão hòa nhẹ
+          // const avgColor = (data[i] + data[i + 1] + data[i + 2]) / 3;
 
-          // Giảm bão hòa tổng thể một chút
-          data[i] = data[i] * 0.9 + avgColor * 0.1; // Giảm bão hòa cho màu đỏ (R)
-          data[i + 1] = data[i + 1] * 0.95 + avgColor * 0.05; // Giảm bão hòa cho màu xanh lá (G)
-          data[i + 2] = data[i + 2] * 0.95 + avgColor * 0.05; // Giảm bão hòa cho màu xanh dương (B)
+          // // Giảm bão hòa tổng thể một chút
+          // data[i] = data[i] * 0.9 + avgColor * 0.1; // Giảm bão hòa cho màu đỏ (R)
+          // data[i + 1] = data[i + 1] * 0.95 + avgColor * 0.05; // Giảm bão hòa cho màu xanh lá (G)
+          // data[i + 2] = data[i + 2] * 0.95 + avgColor * 0.05; // Giảm bão hòa cho màu xanh dương (B)
 
-          // Điều chỉnh HSL cho màu đỏ (tăng saturation)
-          if (data[i] > data[i + 1] && data[i] > data[i + 2]) {
-            // Nếu là màu đỏ (R)
-            data[i] = Math.min(255, data[i] * 1.1); // Tăng saturation cho màu đỏ
-          }
+          // // Điều chỉnh HSL cho màu đỏ (tăng saturation)
+          // if (data[i] > data[i + 1] && data[i] > data[i + 2]) {
+          //   // Nếu là màu đỏ (R)
+          //   data[i] = Math.min(255, data[i] * 1.1); // Tăng saturation cho màu đỏ
+          // }
 
           // Điều chỉnh HSL cho màu vàng (giảm saturation và tăng lightness)
-          if (data[i + 1] > data[i] && data[i + 2] > data[i]) {
-            // Nếu là màu vàng (G + B > R)
-            data[i + 1] = data[i + 1] * 0.85; // Giảm saturation cho màu vàng
-            data[i + 2] = Math.min(255, data[i + 2] * 1.1); // Tăng lightness cho màu vàng
-          }
+          // if (data[i + 1] > data[i] && data[i + 2] > data[i]) {
+          //   // Nếu là màu vàng (G + B > R)
+          //   data[i + 1] = data[i + 1] * 0.85; // Giảm saturation cho màu vàng
+          //   data[i + 2] = Math.min(255, data[i + 2] * 1.05); // Tăng lightness cho màu vàng
+          // }
 
           // Giảm warmth (giảm độ ấm cho màu đỏ)
-          data[i] = Math.min(255, data[i] * 0.4); // Giảm bớt độ ấm cho màu đỏ (R)
+          data[i] = Math.min(255, data[i] * 0.95); // Giảm bớt độ ấm cho màu đỏ (R)
 
           // Tăng tint cho màu đỏ (tạo hiệu ứng đỏ mạnh hơn)
-          data[i] = Math.min(255, data[i] * 1.5); // Tăng tint cho màu đỏ (R)
+          data[i] = Math.min(255, data[i] * 1.05); // Tăng tint cho màu đỏ (R)
 
-          // Hoặc tăng tint cho màu xanh lá (G)
-          data[i + 1] = Math.min(255, data[i + 1] * 1.1); // Tăng tint cho màu xanh lá (G)
+          // // Hoặc tăng tint cho màu xanh lá (G)
+          // data[i + 1] = Math.min(255, data[i + 1] * 1.1); // Tăng tint cho màu xanh lá (G)
 
-          // Tăng độ đen (black) bằng cách làm tối các kênh màu
-          // Giảm giá trị các kênh màu để làm tăng độ tối (black)
-          data[i] = data[i] * 1.1; // Tăng đen cho màu đỏ (R)
-          data[i + 1] = data[i + 1] * 1.1; // Tăng đen cho màu xanh lá (G)
-          data[i + 2] = data[i + 2] * 1.1; // Tăng đen cho màu xanh dương (B)
+          // // Tăng độ đen (black) bằng cách làm tối các kênh màu
+          // // Giảm giá trị các kênh màu để làm tăng độ tối (black)
+          // data[i] = data[i] * 0.8; // Tăng đen cho màu đỏ (R)
+          // data[i + 1] = data[i + 1] * 0.8; // Tăng đen cho màu xanh lá (G)
+          // data[i + 2] = data[i + 2] * 0.8; // Tăng đen cho màu xanh dương (B)
 
-          // Thêm highlights (Tăng sáng cho các vùng sáng)
-          // Tăng các kênh màu nếu giá trị của chúng đã cao (tạo điểm sáng nổi bật)
-          if (data[i] > 200) {
-            // Nếu là vùng sáng của màu đỏ (R)
-            data[i] = Math.min(255, data[i] * 1.1); // Tăng độ sáng của màu đỏ
-          }
-          if (data[i + 1] > 200) {
-            // Nếu là vùng sáng của màu xanh lá (G)
-            data[i + 1] = Math.min(255, data[i + 1] * 1.1); // Tăng độ sáng của màu xanh lá
-          }
-          if (data[i + 2] > 200) {
-            // Nếu là vùng sáng của màu xanh dương (B)
-            data[i + 2] = Math.min(255, data[i + 2] * 1.1); // Tăng độ sáng của màu xanh dương
-          }
+          // // Thêm highlights (Tăng sáng cho các vùng sáng)
+          // // Tăng các kênh màu nếu giá trị của chúng đã cao (tạo điểm sáng nổi bật)
+          // if (data[i] > 200) {
+          //   // Nếu là vùng sáng của màu đỏ (R)
+          //   data[i] = Math.min(255, data[i] * 1.1); // Tăng độ sáng của màu đỏ
+          // }
+          // if (data[i + 1] > 200) {
+          //   // Nếu là vùng sáng của màu xanh lá (G)
+          //   data[i + 1] = Math.min(255, data[i + 1] * 1.1); // Tăng độ sáng của màu xanh lá
+          // }
+          // if (data[i + 2] > 200) {
+          //   // Nếu là vùng sáng của màu xanh dương (B)
+          //   data[i + 2] = Math.min(255, data[i + 2] * 1.1); // Tăng độ sáng của màu xanh dương
+          // }
         }
         break;
 
