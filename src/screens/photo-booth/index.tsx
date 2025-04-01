@@ -109,6 +109,31 @@ const PhotoBoothScreen = () => {
           data[i + 2] = data[i + 2] * 1.05 + avgColor * 0.05;
         }
         break;
+      case "smooth":
+        // Soft effect with adjusted brightness, contrast, saturation, and slight blur
+        for (let i = 0; i < data.length; i += 4) {
+          // Điều chỉnh độ sáng (brightness) - tăng nhẹ độ sáng
+          data[i] = Math.min(255, data[i] * 1.02); // R component (sáng nhẹ hơn)
+          data[i + 1] = Math.min(255, data[i + 1] * 1.02); // G component
+          data[i + 2] = Math.min(255, data[i + 2] * 1.02); // B component
+
+          // Điều chỉnh độ tương phản (contrast) - tăng nhẹ độ tương phản
+          const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+          data[i] = data[i] * 0.85 + avg * 0.15; // Tăng độ tương phản cho R component
+          data[i + 1] = data[i + 1] * 0.85 + avg * 0.15; // Tăng độ tương phản cho G component
+          data[i + 2] = data[i + 2] * 0.85 + avg * 0.15; // Tăng độ tương phản cho B component
+
+          // Điều chỉnh độ bão hòa (saturation) - giảm độ bão hòa cho màu đỏ, tăng cho màu lạnh
+          const avgColor = (data[i] + data[i + 1] + data[i + 2]) / 3;
+
+          // Giảm bão hòa cho màu đỏ (R) để làm da mặt nhẹ nhàng hơn
+          data[i] = data[i] * 0.8 + avgColor * 0.2; // Giảm bão hòa cho màu đỏ (R)
+
+          // Tăng độ bão hòa nhẹ cho màu xanh lá (G) và xanh dương (B) để làm lạnh ảnh
+          data[i + 1] = data[i + 1] * 1.03 + avgColor * 0.03; // Tăng nhẹ bão hòa màu xanh lá (G)
+          data[i + 2] = data[i + 2] * 1.03 + avgColor * 0.03; // Tăng nhẹ bão hòa màu xanh dương (B)
+        }
+        break;
 
       default:
         break;
@@ -122,6 +147,9 @@ const PhotoBoothScreen = () => {
     switch (filter) {
       case "brighten":
         setCssFilter("brightness(105%) contrast(95%) saturate(110%)");
+        break;
+      case "smooth":
+        setCssFilter("brightness(105%) contrast(80%) saturate(105%)");
         break;
       default:
         setCssFilter(filter);
@@ -303,6 +331,10 @@ const PhotoBoothScreen = () => {
 
           <button onClick={() => setFilter("brighten")} disabled={capturing}>
             Brighten
+          </button>
+
+          <button onClick={() => setFilter("smooth")} disabled={capturing}>
+            Smooth
           </button>
         </div>
       </div>
