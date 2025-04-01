@@ -149,7 +149,7 @@ const PhotoBoothScreen = () => {
         setCssFilter("brightness(105%) contrast(95%) saturate(110%)");
         break;
       case "smooth":
-        setCssFilter("brightness(105%) contrast(80%) saturate(105%)");
+        setCssFilter("brightness(102%) contrast(85%) saturate(103%)");
         break;
       default:
         setCssFilter(filter);
