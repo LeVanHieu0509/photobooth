@@ -168,15 +168,15 @@ const frames: any = {
     },
   },
 
-  mofusandImage: {
+  serenity: {
     draw: (ctx: any, x: any, y: any, width: any, height: any) => {},
   },
 
-  shinChanImage: {
+  blossom: {
     draw: (ctx: any, x: any, y: any, width: any, height: any) => {},
   },
 
-  miffyImage: {
+  enternal: {
     draw: (ctx: any, x: any, y: any, width: any, height: any) => {},
   },
 };
@@ -184,7 +184,7 @@ const PhotoPreviewScreen = () => {
   const stripCanvasRef = useRef<any>(null);
   const navigate = useRouter();
   const [stripColor, setStripColor] = useState<any>("white");
-  const [selectedFrame, setSelectedFrame] = useState<any>("mofusandImage");
+  const [selectedFrame, setSelectedFrame] = useState<any>("serenity");
 
   const [qrCodeUrl, setQrCodeUrl] = useState<any>("");
   const [isGeneratingQR, setIsGeneratingQR] = useState<any>(false);
@@ -272,11 +272,11 @@ const PhotoPreviewScreen = () => {
       ctx.fillText("© 2025", canvas.width - borderSize, totalHeight - borderSize / 2);
 
       // Draw the frame if mofusand or shin chan is selected
-      if (selectedFrame === "mofusandImage") {
+      if (selectedFrame === "serenity") {
         drawMofusandFrame(ctx, canvas);
-      } else if (selectedFrame === "shinChanImage") {
+      } else if (selectedFrame === "blossom") {
         drawShinChanFrame(ctx, canvas);
-      } else if (selectedFrame === "miffyImage") {
+      } else if (selectedFrame === "enternal") {
         drawMiffyFrame(ctx, canvas);
       }
     };
@@ -336,6 +336,7 @@ const PhotoPreviewScreen = () => {
   useEffect(() => {
     if (capturedImages.length === 4) {
       setTimeout(() => {
+        console.log("generatePhotoStrip");
         generatePhotoStrip();
       }, 100);
     }
@@ -428,9 +429,9 @@ const PhotoPreviewScreen = () => {
         <div className="control-section">
           <p className="section-title">Frames</p>
           <div className="frame-options">
-            <button onClick={() => setSelectedFrame("mofusandImage")}>Serenity</button>
-            <button onClick={() => setSelectedFrame("shinChanImage")}>Blossom</button>
-            <button onClick={() => setSelectedFrame("miffyImage")}>Enternal</button>
+            <button onClick={() => setSelectedFrame("serenity")}>Serenity</button>
+            <button onClick={() => setSelectedFrame("blossom")}>Blossom</button>
+            <button onClick={() => setSelectedFrame("enternal")}>Enternal</button>
           </div>
         </div>
 
