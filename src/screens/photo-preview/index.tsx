@@ -330,7 +330,7 @@ const PhotoPreviewScreen = () => {
           }
         };
       });
-    }, 50);
+    }, 100);
   }, [stripColor, selectedFrame]);
 
   useEffect(() => {
