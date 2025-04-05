@@ -220,9 +220,9 @@ const PhotoPreviewScreen = () => {
     if (!ctx) return;
 
     const imgWidth = 415;
-    const imgHeight = 300;
+    const imgHeight = 305;
     const borderSize = 35;
-    const photoSpacing = 19;
+    const photoSpacing = 15;
     const textHeight = 50;
     const totalHeight = imgHeight * 4 + photoSpacing * 3 + borderSize * 2 + textHeight;
     const scale = 2;
