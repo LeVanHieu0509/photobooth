@@ -339,7 +339,7 @@ const PhotoPreviewScreen = () => {
         generatePhotoStrip();
       }, 100);
     }
-  }, [capturedImages, stripColor, selectedFrame, generatePhotoStrip]);
+  }, [capturedImages, stripColor, selectedFrame]);
 
   const downloadPhotoStrip = () => {
     const link = document.createElement("a");
