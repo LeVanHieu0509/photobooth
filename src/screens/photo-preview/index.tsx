@@ -331,7 +331,7 @@ const PhotoPreviewScreen = () => {
         };
       });
     }, 100);
-  }, [stripColor, selectedFrame]);
+  }, [capturedImages, stripColor, selectedFrame]);
 
   useEffect(() => {
     if (capturedImages.length === 4) {
