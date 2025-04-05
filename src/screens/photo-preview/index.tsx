@@ -13,9 +13,10 @@ interface PhotoPreviewScreenProps {}
 const drawMofusandFrame = (ctx: any, canvas: any) => {
   const frameImg = new Image();
   frameImg.src = `${process.env.basePath}/img/serenity.png`;
+  const scale = 2; // hoặc tăng cao hơn nếu vẫn bể
 
   frameImg.onload = () => {
-    ctx.drawImage(frameImg, 0, 0, canvas.width, canvas.height);
+    ctx.drawImage(frameImg, 0, 0, canvas.width / scale, canvas.height / scale);
   };
 };
 
@@ -24,8 +25,10 @@ const drawShinChanFrame = (ctx: any, canvas: any) => {
   const frameImg = new Image();
   frameImg.src = `${process.env.basePath}/img/blossom.png`;
 
+  const scale = 2; // hoặc tăng cao hơn nếu vẫn bể
+
   frameImg.onload = () => {
-    ctx.drawImage(frameImg, 0, 0, canvas.width, canvas.height);
+    ctx.drawImage(frameImg, 0, 0, canvas.width / scale, canvas.height / scale);
   };
 };
 
@@ -33,9 +36,9 @@ const drawShinChanFrame = (ctx: any, canvas: any) => {
 const drawMiffyFrame = (ctx: any, canvas: any) => {
   const frameImg = new Image();
   frameImg.src = `${process.env.basePath}/img/enternal.png`;
-
+  const scale = 2; // hoặc tăng cao hơn nếu vẫn bể
   frameImg.onload = () => {
-    ctx.drawImage(frameImg, 0, 0, canvas.width, canvas.height);
+    ctx.drawImage(frameImg, 0, 0, canvas.width / scale, canvas.height / scale);
   };
 };
 
@@ -181,7 +184,7 @@ const PhotoPreviewScreen = () => {
   const stripCanvasRef = useRef<any>(null);
   const navigate = useRouter();
   const [stripColor, setStripColor] = useState<any>("white");
-  const [selectedFrame, setSelectedFrame] = useState<any>("none");
+  const [selectedFrame, setSelectedFrame] = useState<any>("mofusandImage");
 
   const [qrCodeUrl, setQrCodeUrl] = useState<any>("");
   const [isGeneratingQR, setIsGeneratingQR] = useState<any>(false);
@@ -215,15 +218,25 @@ const PhotoPreviewScreen = () => {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
 
-    const imgWidth = 400;
+    const imgWidth = 415;
     const imgHeight = 300;
-    const borderSize = 37;
+    const borderSize = 35;
     const photoSpacing = 19;
     const textHeight = 50;
     const totalHeight = imgHeight * 4 + photoSpacing * 3 + borderSize * 2 + textHeight;
 
-    canvas.width = imgWidth + borderSize * 2;
-    canvas.height = totalHeight;
+    const frameImg = new Image();
+    frameImg.src = `${process.env.basePath}/img/serenity.png`;
+    const scale = 2; // hoặc tăng cao hơn nếu vẫn bể
+
+    frameImg.onload = () => {
+      canvas.width = scale * imgWidth + borderSize * 2;
+      canvas.height = scale * totalHeight;
+      canvas.style.width = `${canvas.width / scale}px`;
+      canvas.style.height = `${canvas.height / scale}px`;
+
+      ctx.scale(scale, scale);
+    };
 
     ctx.fillStyle = stripColor;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -273,50 +286,52 @@ const PhotoPreviewScreen = () => {
       return;
     }
 
-    capturedImages.forEach((image: any, index: any) => {
-      const img = new Image();
-      img.src = image;
-      img.onload = () => {
-        const yOffset = borderSize + (imgHeight + photoSpacing) * index;
+    setTimeout(() => {
+      capturedImages.forEach((image: any, index: any) => {
+        const img = new Image();
+        img.src = image;
+        img.onload = () => {
+          const yOffset = borderSize + (imgHeight + photoSpacing) * index;
 
-        const imageRatio = img.width / img.height;
-        const targetRatio = imgWidth / imgHeight;
+          const imageRatio = img.width / img.height;
+          const targetRatio = imgWidth / imgHeight;
 
-        let sourceWidth = img.width;
-        let sourceHeight = img.height;
-        let sourceX = 0;
-        let sourceY = 0;
+          let sourceWidth = img.width;
+          let sourceHeight = img.height;
+          let sourceX = 0;
+          let sourceY = 0;
 
-        if (imageRatio > targetRatio) {
-          sourceWidth = sourceHeight * targetRatio;
-          sourceX = (img.width - sourceWidth) / 2;
-        } else {
-          sourceHeight = sourceWidth / targetRatio;
-          sourceY = (img.height - sourceHeight) / 2;
-        }
+          if (imageRatio > targetRatio) {
+            sourceWidth = sourceHeight * targetRatio;
+            sourceX = (img.width - sourceWidth) / 2;
+          } else {
+            sourceHeight = sourceWidth / targetRatio;
+            sourceY = (img.height - sourceHeight) / 2;
+          }
 
-        ctx.drawImage(img, sourceX, sourceY, sourceWidth, sourceHeight, borderSize, yOffset, imgWidth, imgHeight);
+          ctx.drawImage(img, sourceX, sourceY, sourceWidth, sourceHeight, borderSize, yOffset, imgWidth, imgHeight);
 
-        if (frames[selectedFrame] && typeof frames[selectedFrame].draw === "function") {
-          frames[selectedFrame].draw(ctx, borderSize, yOffset, imgWidth, imgHeight);
-        }
+          if (frames[selectedFrame] && typeof frames[selectedFrame].draw === "function") {
+            frames[selectedFrame].draw(ctx, borderSize, yOffset, imgWidth, imgHeight);
+          }
 
-        imagesLoaded++;
+          imagesLoaded++;
 
-        if (imagesLoaded === capturedImages.length) {
-          drawText();
-        }
-      };
+          if (imagesLoaded === capturedImages.length) {
+            drawText();
+          }
+        };
 
-      img.onerror = () => {
-        console.error(`Failed to load image at index ${index}`);
-        imagesLoaded++;
-        if (imagesLoaded === capturedImages.length) {
-          drawText();
-        }
-      };
-    });
-  }, [capturedImages, stripColor, selectedFrame]);
+        img.onerror = () => {
+          console.error(`Failed to load image at index ${index}`);
+          imagesLoaded++;
+          if (imagesLoaded === capturedImages.length) {
+            drawText();
+          }
+        };
+      });
+    }, 100);
+  }, [stripColor, selectedFrame]);
 
   useEffect(() => {
     if (capturedImages.length === 4) {

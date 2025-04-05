@@ -474,7 +474,7 @@ export const styleBooth = css`
   .photo-preview canvas {
     max-width: 320px;
     width: 100%;
-    height: auto;
+    height: auto !important;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     margin-top: 20px;
   }

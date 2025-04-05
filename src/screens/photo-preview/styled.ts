@@ -4,8 +4,8 @@ export const PhotoPreviewScreenWrapper = styled.div`
   button {
     padding: 12px;
   }
-  
-  p{
+
+  p {
     font-family: var(--font-inter) !important;
   }
 `;
