@@ -37,7 +37,7 @@ const HomepageScreen = ({}: HomepageProps) => {
           <div style={{ height: "20px" }}></div>
 
           <img
-            src={`${process.env.basePath}/img/photobooth-strip.png`}
+            src={`${process.env.basePath}/img/coc.png`}
             alt="photobooth strip"
             className="photobooth-strip"
           />

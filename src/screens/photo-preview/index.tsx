@@ -12,7 +12,7 @@ interface PhotoPreviewScreenProps {}
 /* Mofusand frame */
 const drawMofusandFrame = (ctx: any, canvas: any) => {
   const frameImg = new Image();
-  frameImg.src = `${process.env.basePath}/img/serenity.png`;
+  frameImg.src = `${process.env.basePath}/img/1c.png`;
   const scale = 2; // hoặc tăng cao hơn nếu vẫn bể
 
   frameImg.onload = () => {
@@ -23,7 +23,7 @@ const drawMofusandFrame = (ctx: any, canvas: any) => {
 /* Crayon Shin Chan Frame */
 const drawShinChanFrame = (ctx: any, canvas: any) => {
   const frameImg = new Image();
-  frameImg.src = `${process.env.basePath}/img/blossom.png`;
+  frameImg.src = `${process.env.basePath}/img/2c.png`;
 
   const scale = 2; // hoặc tăng cao hơn nếu vẫn bể
 
@@ -35,7 +35,7 @@ const drawShinChanFrame = (ctx: any, canvas: any) => {
 /* Miffy Frame */
 const drawMiffyFrame = (ctx: any, canvas: any) => {
   const frameImg = new Image();
-  frameImg.src = `${process.env.basePath}/img/enternal.png`;
+  frameImg.src = `${process.env.basePath}/img/3c.png`;
   const scale = 2; // hoặc tăng cao hơn nếu vẫn bể
   frameImg.onload = () => {
     ctx.drawImage(frameImg, 0, 0, canvas.width / scale, canvas.height / scale);
@@ -225,7 +225,7 @@ const PhotoPreviewScreen = () => {
     const photoSpacing = 15;
     const textHeight = 50;
     const totalHeight = imgHeight * 4 + photoSpacing * 3 + borderSize * 2 + textHeight;
-    const scale = 2;
+    const scale = 2.03; // Adjust this value to change the size of the canvas
 
     const frameImg = new Image();
     frameImg.src = `${process.env.basePath}/img/serenity.png`;
@@ -420,9 +420,9 @@ const PhotoPreviewScreen = () => {
         <div className="control-section">
           <p className="section-title">Frames</p>
           <div className="frame-options">
-            <button onClick={() => setSelectedFrame("serenity")}>Serenity</button>
-            <button onClick={() => setSelectedFrame("blossom")}>Blossom</button>
-            <button onClick={() => setSelectedFrame("enternal")}>Enternal</button>
+            <button onClick={() => setSelectedFrame("serenity")}>Dreamy</button>
+            <button onClick={() => setSelectedFrame("blossom")}>Whisper</button>
+            <button onClick={() => setSelectedFrame("enternal")}>Froggy</button>
           </div>
         </div>
 
