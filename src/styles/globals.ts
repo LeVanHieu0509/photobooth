@@ -105,11 +105,11 @@ const style = css`
   h2,
   h3,
   h4,
-  h5,
-  h6 {
+  h5
+   {
     margin: 0px;
     letter-spacing: 0;
-    font-family: var(--font-lora) !important;
+    font-family: var(--fwd-font) !important;
   }
 
   span {

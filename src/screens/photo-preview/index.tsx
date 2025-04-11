@@ -12,30 +12,33 @@ interface PhotoPreviewScreenProps {}
 /* Mofusand frame */
 const drawMofusandFrame = (ctx: any, canvas: any) => {
   const frameImg = new Image();
-  frameImg.src = `${process.env.basePath}/img/mofusand-frame.png`;
+  frameImg.src = `${process.env.basePath}/img/serenity.png`;
+  const scale = 2; // hoặc tăng cao hơn nếu vẫn bể
 
   frameImg.onload = () => {
-    ctx.drawImage(frameImg, 0, 0, canvas.width, canvas.height);
+    ctx.drawImage(frameImg, 0, 0, canvas.width / scale, canvas.height / scale);
   };
 };
 
 /* Crayon Shin Chan Frame */
 const drawShinChanFrame = (ctx: any, canvas: any) => {
   const frameImg = new Image();
-  frameImg.src = `${process.env.basePath}/img/shin-chan.png`;
+  frameImg.src = `${process.env.basePath}/img/blossom.png`;
+
+  const scale = 2; // hoặc tăng cao hơn nếu vẫn bể
 
   frameImg.onload = () => {
-    ctx.drawImage(frameImg, 0, 0, canvas.width, canvas.height);
+    ctx.drawImage(frameImg, 0, 0, canvas.width / scale, canvas.height / scale);
   };
 };
 
 /* Miffy Frame */
 const drawMiffyFrame = (ctx: any, canvas: any) => {
   const frameImg = new Image();
-  frameImg.src = `${process.env.basePath}/img//miffy-frame.png`;
-
+  frameImg.src = `${process.env.basePath}/img/enternal.png`;
+  const scale = 2; // hoặc tăng cao hơn nếu vẫn bể
   frameImg.onload = () => {
-    ctx.drawImage(frameImg, 0, 0, canvas.width, canvas.height);
+    ctx.drawImage(frameImg, 0, 0, canvas.width / scale, canvas.height / scale);
   };
 };
 
@@ -165,15 +168,15 @@ const frames: any = {
     },
   },
 
-  mofusandImage: {
+  serenity: {
     draw: (ctx: any, x: any, y: any, width: any, height: any) => {},
   },
 
-  shinChanImage: {
+  blossom: {
     draw: (ctx: any, x: any, y: any, width: any, height: any) => {},
   },
 
-  miffyImage: {
+  enternal: {
     draw: (ctx: any, x: any, y: any, width: any, height: any) => {},
   },
 };
@@ -181,7 +184,7 @@ const PhotoPreviewScreen = () => {
   const stripCanvasRef = useRef<any>(null);
   const navigate = useRouter();
   const [stripColor, setStripColor] = useState<any>("white");
-  const [selectedFrame, setSelectedFrame] = useState<any>("none");
+  const [selectedFrame, setSelectedFrame] = useState<any>("serenity");
 
   const [qrCodeUrl, setQrCodeUrl] = useState<any>("");
   const [isGeneratingQR, setIsGeneratingQR] = useState<any>(false);
@@ -214,69 +217,50 @@ const PhotoPreviewScreen = () => {
     const canvas = stripCanvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
-    const imgWidth = 400;
-    const imgHeight = 300;
-    const borderSize = 40;
-    const photoSpacing = 20;
+    const imgWidth = 415;
+    const imgHeight = 305;
+    const borderSize = 35;
+    const photoSpacing = 15;
     const textHeight = 50;
     const totalHeight = imgHeight * 4 + photoSpacing * 3 + borderSize * 2 + textHeight;
+    const scale = 2;
 
-    canvas.width = imgWidth + borderSize * 2;
-    canvas.height = totalHeight;
+    const frameImg = new Image();
+    frameImg.src = `${process.env.basePath}/img/serenity.png`;
 
-    ctx.fillStyle = stripColor;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    frameImg.onload = async () => {
+      // Setup canvas size and scale
+      canvas.width = scale * imgWidth + borderSize * 2;
+      canvas.height = scale * totalHeight;
+      canvas.style.width = `${canvas.width / scale}px`;
+      canvas.style.height = `${canvas.height / scale}px`;
 
-    let imagesLoaded = 0;
+      ctx.scale(scale, scale);
+      ctx.fillStyle = stripColor;
+      ctx.fillRect(0, 0, canvas.width / scale, canvas.height / scale);
 
-    // Create a function to draw the text after all images have loaded
-    const drawText = () => {
-      const now = new Date();
-      const timestamp =
-        now.toLocaleDateString("en-US", {
-          month: "2-digit",
-          day: "2-digit",
-          year: "numeric",
-        }) +
-        "  " +
-        now.toLocaleTimeString("en-US", {
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: true,
-        });
-
-      ctx.fillStyle = stripColor === "black" || stripColor === "800000" ? "#FFFFFF" : "#000000";
-      ctx.font = "20px Arial";
-      ctx.textAlign = "center";
-
-      ctx.fillText("" + timestamp, canvas.width / 2, totalHeight - borderSize * 1);
-
-      ctx.fillStyle =
-        stripColor === "black" || stripColor === "800000" ? "rgba(255, 255, 255, 0.5)" : "rgba(0, 0, 0, 0.5)";
-      ctx.font = "12px Arial";
-      ctx.textAlign = "center";
-      ctx.fillText("© 2025", canvas.width - borderSize, totalHeight - borderSize / 2);
-
-      // Draw the frame if mofusand or shin chan is selected
-      if (selectedFrame === "mofusandImage") {
-        drawMofusandFrame(ctx, canvas);
-      } else if (selectedFrame === "shinChanImage") {
-        drawShinChanFrame(ctx, canvas);
-      } else if (selectedFrame === "miffyImage") {
-        drawMiffyFrame(ctx, canvas);
+      if (capturedImages.length === 0) {
+        drawText(ctx, canvas.width / scale, totalHeight);
+        return;
       }
-    };
 
-    if (capturedImages.length === 0) {
-      drawText();
-      return;
-    }
+      // Load all images as promises
+      const loadedImages = await Promise.all(
+        capturedImages.map((src: any) => {
+          return new Promise<HTMLImageElement>((resolve, reject) => {
+            const img = new Image();
+            img.crossOrigin = "anonymous";
+            img.src = src;
+            img.onload = () => resolve(img);
+            img.onerror = reject;
+          });
+        })
+      );
 
-    capturedImages.forEach((image: any, index: any) => {
-      const img = new Image();
-      img.src = image;
-      img.onload = () => {
+      // Draw each image
+      loadedImages.forEach((img, index) => {
         const yOffset = borderSize + (imgHeight + photoSpacing) * index;
 
         const imageRatio = img.width / img.height;
@@ -300,31 +284,54 @@ const PhotoPreviewScreen = () => {
         if (frames[selectedFrame] && typeof frames[selectedFrame].draw === "function") {
           frames[selectedFrame].draw(ctx, borderSize, yOffset, imgWidth, imgHeight);
         }
+      });
 
-        imagesLoaded++;
+      drawText(ctx, canvas.width / scale, totalHeight);
+    };
 
-        if (imagesLoaded === capturedImages.length) {
-          drawText();
-        }
-      };
+    frameImg.onerror = () => {
+      console.error("Failed to load frame image");
+    };
 
-      img.onerror = () => {
-        console.error(`Failed to load image at index ${index}`);
-        imagesLoaded++;
-        if (imagesLoaded === capturedImages.length) {
-          drawText();
-        }
-      };
-    });
+    const drawText = (ctx: CanvasRenderingContext2D, canvasWidth: number, canvasHeight: number) => {
+      const now = new Date();
+      const timestamp = `${now.toLocaleDateString("en-US", {
+        month: "2-digit",
+        day: "2-digit",
+        year: "numeric",
+      })}  ${now.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      })}`;
+
+      ctx.fillStyle = stripColor === "black" || stripColor === "800000" ? "#FFFFFF" : "#000000";
+      ctx.font = "20px Arial";
+      ctx.textAlign = "center";
+      ctx.fillText(timestamp, canvasWidth / 2, canvasHeight - borderSize);
+
+      ctx.fillStyle = stripColor === "black" || stripColor === "800000" ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)";
+      ctx.font = "12px Arial";
+      ctx.fillText("© 2025", canvasWidth - borderSize, canvasHeight - borderSize / 2);
+
+      if (selectedFrame === "serenity") {
+        drawMofusandFrame(ctx, canvas);
+      } else if (selectedFrame === "blossom") {
+        drawShinChanFrame(ctx, canvas);
+      } else if (selectedFrame === "enternal") {
+        drawMiffyFrame(ctx, canvas);
+      }
+    };
   }, [capturedImages, stripColor, selectedFrame]);
 
   useEffect(() => {
     if (capturedImages.length === 4) {
       setTimeout(() => {
+        console.log("generatePhotoStrip");
         generatePhotoStrip();
       }, 100);
     }
-  }, [capturedImages, stripColor, selectedFrame, generatePhotoStrip]);
+  }, [capturedImages, stripColor, selectedFrame]);
 
   const downloadPhotoStrip = () => {
     const link = document.createElement("a");
@@ -413,9 +420,9 @@ const PhotoPreviewScreen = () => {
         <div className="control-section">
           <p className="section-title">Frames</p>
           <div className="frame-options">
-            <button onClick={() => setSelectedFrame("mofusandImage")}>Mofusand</button>
-            <button onClick={() => setSelectedFrame("shinChanImage")}>Shin Chan</button>
-            <button onClick={() => setSelectedFrame("miffyImage")}>Miffy</button>
+            <button onClick={() => setSelectedFrame("serenity")}>Serenity</button>
+            <button onClick={() => setSelectedFrame("blossom")}>Blossom</button>
+            <button onClick={() => setSelectedFrame("enternal")}>Enternal</button>
           </div>
         </div>
 
@@ -423,11 +430,11 @@ const PhotoPreviewScreen = () => {
 
         <div className="control-section">
           <div className="action-buttons">
-            <button onClick={downloadPhotoStrip}>📥 Download Photo Strip</button>
+            <button onClick={downloadPhotoStrip}> Download Photo Strip</button>
             <button onClick={generateQRCode} disabled={isGeneratingQR}>
-              {isGeneratingQR ? "Generating..." : "🔗 Download via QR Code"}
+              {isGeneratingQR ? "Generating..." : " Download via QR Code"}
             </button>
-            <button onClick={() => navigate.push("/photobooth")}>🔄 Take New Photos</button>
+            <button onClick={() => navigate.push("/photobooth")}> Take New Photos</button>
           </div>
 
           {qrCodeUrl && (

@@ -26,7 +26,6 @@ export const styleBooth = css`
   .navbar {
     width: auto;
     max-width: 100%;
-    margin: 20px auto 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,7 +65,7 @@ export const styleBooth = css`
     transition: all 0.3s ease;
     background: none !important;
     white-space: nowrap;
-    border-radius: 20px;
+    /* border-radius: 20px; */
   }
 
   .navbar a:hover {
@@ -200,13 +199,13 @@ export const styleBooth = css`
   }
 
   .privacy-container h1 {
-    font-family: "Poppins", sans-serif;
+    font-family: var(--fwd-font), "Poppins", sans-serif !important;
     font-size: 2.5rem;
     margin-bottom: 25px;
   }
 
   .privacy-container p {
-    font-family: "Poppins", sans-serif;
+    font-family: var(--fwd-font), "Poppins", sans-serif !important;
     font-size: 1.1rem;
     line-height: 1.6;
     color: #333;
@@ -253,7 +252,7 @@ export const styleBooth = css`
   .contact-form h2 {
     text-align: center;
     margin-bottom: 20px;
-    font-family: "Arial", sans-serif;
+    font-family: var(--fwd-font), "Arial", sans-serif !important;
     color: #333;
   }
 
@@ -264,7 +263,7 @@ export const styleBooth = css`
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
-    font-family: "Arial", sans-serif;
+    font-family: var(--fwd-font), "Arial", sans-serif !important;
     box-sizing: border-box;
     margin-bottom: 15px;
   }
@@ -347,12 +346,12 @@ export const styleBooth = css`
   .countdown {
     position: relative;
     text-align: center;
-    font-size: 50px;
+    font-size: 45px;
     font-weight: bold;
     color: red;
     margin: 20px 0;
     background: rgba(255, 255, 255, 0.8);
-    padding: 10px 20px;
+    padding: 10px 15px;
     border-radius: 10px;
     animation: countdown-animation 0.5s ease-in-out alternate infinite;
   }
@@ -475,7 +474,7 @@ export const styleBooth = css`
   .photo-preview canvas {
     max-width: 320px;
     width: 100%;
-    height: auto;
+    height: auto !important;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     margin-top: 20px;
   }
@@ -830,7 +829,7 @@ export const styleBooth = css`
   }
 
   .home-container h1 {
-    font-family: "Poppins", sans-serif;
+    font-family: var(--fwd-font), "Poppins", sans-serif;
     font-size: 3rem;
     margin: 0;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
@@ -880,6 +879,7 @@ export const styleBooth = css`
     .home-container h1 {
       font-size: 2.2rem;
       margin-bottom: 15px;
+      /* width: 300px; */
     }
 
     .welcome-container h1 {
@@ -921,7 +921,7 @@ export const styleBooth = css`
       top: 0;
       right: 0;
       flex-direction: column;
-      background-color: rgba(255, 255, 255, 0.95);
+      background-color: rgba(255, 255, 255, 1);
       width: 80%;
       height: 100vh;
       padding: 60px 20px 20px;
@@ -945,13 +945,11 @@ export const styleBooth = css`
       padding: 0;
       left: 0;
       position: relative;
-      margin-left: -10px;
-      margin-right: -10px;
       overflow: hidden;
     }
 
     .video-feed {
-      width: 100%;
+      width: 90%;
       height: 100%;
       max-height: none;
       aspect-ratio: 4/3;
@@ -1094,7 +1092,6 @@ export const styleBooth = css`
     }
 
     .video-feed {
-      width: 100%;
       max-width: 600px;
       height: auto;
       aspect-ratio: 4/3;
@@ -1147,7 +1144,7 @@ export const styleBooth = css`
       right: 0;
       height: 100vh;
       width: 250px;
-      background-color: rgba(255, 255, 255, 0.95);
+      background-color: rgba(255, 255, 255, 1);
       flex-direction: column;
       gap: 20px;
       padding: 60px 20px;
