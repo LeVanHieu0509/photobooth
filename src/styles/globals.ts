@@ -1,4 +1,4 @@
-import { Inter, Lora } from "next/font/google";
+import { Inter, Lora,Poppins  } from "next/font/google";
 
 import { createGlobalStyle, css } from "styled-components";
 import { device } from "./media";
@@ -6,6 +6,11 @@ import { styleBooth } from "./photo-booth";
 
 const inter = Inter({ subsets: ["latin"], preload: true, fallback: ["Arial"] });
 const lora = Lora({ subsets: ["latin"], preload: true, fallback: ["Arial"] });
+
+const poppins = Poppins({
+  subsets: ["latin"], preload: true, fallback: ["Arial"],
+  weight: "400"
+});
 
 function renderSpace(type: "margin" | "padding", prefix = "") {
   return [0, 2, 4, 6, 8, 10, 12, 14, 15, 16, 17, 20, 24, 28, 30, 32, 36, 40, 50, 60, 62, 100, 200]
@@ -46,11 +51,12 @@ const style = css`
   :root {
     --font-inter: ${inter.style.fontFamily};
     --font-lora: ${inter.style.fontFamily};
+    --font-poppins: ${poppins.style.fontFamily};
   }
 
   html,
   body {
-    font-family: var(--font-inter);
+    font-family: var(--font-poppins);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
@@ -113,11 +119,11 @@ const style = css`
   }
 
   span {
-    font-family: var(--font-inter) !important;
+    font-family: var(--font-poppins) !important;
   }
 
   p {
-    font-family: var(--font-inter) !important;
+    font-family: var(--font-poppins) !important;
   }
 
   h1 {
