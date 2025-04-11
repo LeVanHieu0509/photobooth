@@ -30,9 +30,9 @@ const HomepageScreen = ({}: HomepageProps) => {
       <div className=" background-gradient h-screen flex  flex-col justify-center items-center text-center ">
         {HandleRenderSplash()}
         <div className="home-container">
-          <h1 className="text-5xl font-bold text-pink-600 mb-4">Pose n Sen</h1>
+          <h1 className="text-5xl font-bold text-pink-600 mb-4">Pose-n-Sen</h1>
           <p className="text-lg text-gray-700 mb-6">
-            Welcome to Pose n Sen photobooth! This is your personal photobooth at home.
+            Welcome to Pose-n-Sen photobooth! This is your personal photobooth at home.
           </p>
           <div style={{ height: "20px" }}></div>
 

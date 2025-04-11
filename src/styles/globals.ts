@@ -115,7 +115,7 @@ const style = css`
    {
     margin: 0px;
     letter-spacing: 0;
-    font-family: var(--fwd-font) !important;
+    font-family: var(--fwd-highLine) !important;
   }
 
   span {

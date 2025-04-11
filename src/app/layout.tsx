@@ -54,9 +54,22 @@ const fwdFont = localFont({
   variable: "--fwd-font",
 });
 
+const highLinefont = localFont({
+  src: [
+    {
+      path: "../../public/fonts/High_Line.ttf",
+      weight: "600",
+      style: "normal",
+    },
+  ],
+  display: "swap",
+  preload: true,
+  variable: "--fwd-highLine",
+});
+
 export default async function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="vi" className={`${fwdFont.variable}`}>
+    <html lang="vi" className={`${highLinefont.variable}`}>
       <StyledComponentsRegistry>
         <body>
           <AppWrapper>{children}</AppWrapper>
