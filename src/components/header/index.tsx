@@ -1,3 +1,4 @@
+
 import React, { useContext } from "react";
 import { HeaderWrapper } from "./styled";
 import Link from "next/link";
@@ -8,10 +9,11 @@ interface HeaderProps {}
 const Header = ({}: HeaderProps) => {
   const { closeMobileNav, isMobileNavOpen, toggleMobileNav } = useContext(AppContext);
 
+
   return (
     <HeaderWrapper>
-      <nav className="navbar">
-        <Link href="/" className="logo" onClick={closeMobileNav}></Link>
+      <nav className="navbar mt-5 ">
+        {isMobileNavOpen ? <Link href="/" className="logo" onClick={closeMobileNav}></Link> : ""}
 
         <div className={`nav-links ${isMobileNavOpen ? "open" : ""}`}>
           <Link href="/" onClick={closeMobileNav}>

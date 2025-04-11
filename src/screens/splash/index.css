@@ -1,0 +1,81 @@
+
+
+.splash-screen-wrapper .splashTitle h1{
+   color: #CF1B6F;
+   font-size: 160px;
+   opacity: 0;
+}
+
+.splash-screen-wrapper .splashTitle{
+    margin-top: -100px;
+    
+}
+
+.splash-screen-wrapper .splash-content .subtitle{
+    color: #CF1B6F;
+    font-size: 40px;
+    margin-top: -50px;
+    font-weight: 100;
+    animation: fadeUp 0.5s  forwards;
+    animation-delay: 0.9s;
+    opacity: 0;
+}
+
+.splash-screen-wrapper .splashTitle h1:nth-child(1){
+    animation: fadeIn 0.5s ease-in forwards;
+    animation-delay: 0.1s;
+
+}
+
+.splash-screen-wrapper .splashTitle h1:nth-child(2){
+    animation: fadeIn 0.5s  ease-in forwards;
+    animation-delay: 0.2s;
+}
+
+.splash-screen-wrapper .splashTitle h1:nth-child(3){
+    animation: fadeIn 0.5s ease-in forwards;
+
+    animation-delay: 0.3s;
+}
+
+.splash-screen-wrapper .splashTitle h1:nth-child(4){
+    animation: fadeIn 0.5s ease-in forwards;
+
+    animation-delay: 0.4s;
+}
+.splash-screen-wrapper .splashTitle h1:nth-child(5){
+    animation: fadeIn 0.5s ease-in forwards;
+
+    animation-delay: 0.5s;
+}
+.splash-screen-wrapper .splashTitle h1:nth-child(6){
+    animation: fadeIn 0.5s ease-in forwards;
+
+    animation-delay: 0.6s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        margin-top: 0px;
+    }
+    30% {
+        opacity: 1;
+        margin-top: 40px;}
+    70% {
+        opacity: 1;
+        margin-top: 15px;}
+    100% {
+        opacity: 1;
+        margin-top: 20px;}
+}
+
+@keyframes fadeUp{
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        margin-top: -60px;}
+}
+
