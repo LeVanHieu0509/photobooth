@@ -350,9 +350,11 @@ const PhotoBoothScreen = () => {
           const canvas = document.createElement("canvas");
           const ctx: any = canvas.getContext("2d");
 
+          const originalWidth = img.width;
+          const originalHeight = img.height;
           // Use 3:4 aspect ratio for photo strip
-          canvas.width = 2560;
-          canvas.height = 1440;
+          canvas.width = originalWidth;
+          canvas.height = originalHeight;
 
           // Fill with white background first
           ctx.fillStyle = "#FFFFFF";
