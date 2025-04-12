@@ -221,11 +221,11 @@ const PhotoPreviewScreen = () => {
 
     const imgWidth = 415;
     const imgHeight = 305;
-    const borderSize = 35;
-    const photoSpacing = 15;
-    const textHeight = 50;
+    const borderSize = 30;
+    const photoSpacing = 12;
+    const textHeight = 55;
     const totalHeight = imgHeight * 4 + photoSpacing * 3 + borderSize * 2 + textHeight;
-    const scale = 2.03; // Adjust this value to change the size of the canvas
+    const scale = 2.0; // Adjust this value to change the size of the canvas
 
     const frameImg = new Image();
     frameImg.src = `${process.env.basePath}/img/Khung1.png`;
