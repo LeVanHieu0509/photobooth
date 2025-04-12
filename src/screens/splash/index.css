@@ -102,3 +102,28 @@
         margin-top: -70px;}
 }
 
+@keyframes fadeUpMB{
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        margin-top: -200px;}
+}
+
+
+@media screen and (max-width: 768px) {
+    .splash-screen-wrapper .splashTitle h1{
+        font-size: 50px;
+    }
+    .splash-screen-wrapper .splashTitle{
+        margin-top: -50px;
+    }
+    .splash-screen-wrapper .splash-content .subtitle{
+        font-size: 18px;
+        margin-top: -190px;
+        animation:fadeUpMB  0.5s  forwards;
+        animation-delay: 1.3s;
+    }
+    
+}

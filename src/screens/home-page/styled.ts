@@ -10,6 +10,10 @@ export const HomepageWrapper = styled.div`
     margin-bottom: 40px;
   }
 
+  .Posensen-logo {
+    animation: titlePulse 3s ease-in-out infinite;
+  }
+
   @media ${device.mobile} {
     .home-container {
       padding-top: 0px;

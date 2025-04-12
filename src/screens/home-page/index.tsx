@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import { HomepageWrapper } from "./styled";
 import { useEffect, useState } from "react";
 import SplashScreen from "../splash";
+import Image from 'next/image';
+import logo from '../../../public/img/bruh.svg';
 
 interface HomepageProps {}
 
@@ -30,7 +32,13 @@ const HomepageScreen = ({}: HomepageProps) => {
       <div className=" background-gradient h-screen flex  flex-col justify-center items-center text-center ">
         {HandleRenderSplash()}
         <div className="home-container">
-          <h1 className="text-5xl font-bold text-pink-600 mb-4">Pose-n-Sen</h1>
+          <Image
+            priority
+            src={logo}
+            width={280}
+            alt="Follow us on Twitter"
+            className="Posensen-logo -mb-14 -mt-14"
+          />
           <p className="text-lg text-gray-700 mb-6">
             Welcome to Pose-n-Sen photobooth! This is your personal photobooth at home.
           </p>
