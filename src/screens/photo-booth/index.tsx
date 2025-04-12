@@ -1,6 +1,5 @@
 "use client";
 
-
 import AppContext from "@/contexts/app";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -10,6 +9,8 @@ const PhotoBoothScreen = () => {
   const navigate = useRouter();
   const videoRef = useRef<any>(null);
   const canvasRef = useRef<any>(null);
+  const fileInputRef = useRef<any>(null);
+
   const [capturedImages, setImages] = useState<any>([]);
   const [filter, setFilter] = useState<any>("none");
   const [cssFilter, setCssFilter] = useState<any>(""); // Add this line
@@ -18,6 +19,11 @@ const PhotoBoothScreen = () => {
   const [isMobile, setIsMobile] = useState<any>(false);
   const [countdownTime, setCountdownTime] = useState<any>(5);
   const { setCapturedImages } = useContext(AppContext);
+  const [uploadedImages, setUploadedImages] = useState([]);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [mode, setMode] = useState("capture");
+
+  const requiredPhotos = 4; // Number of photos required for the photo strip
 
   useEffect(() => {
     startCamera();
@@ -267,7 +273,6 @@ const PhotoBoothScreen = () => {
 
       const targetWidth = video.videoWidth;
       const targetHeight = video.videoHeight;
-
       canvas.width = targetWidth;
       canvas.height = targetHeight;
 
@@ -313,76 +318,330 @@ const PhotoBoothScreen = () => {
     }
   };
 
+  // Handle file uploads
+  const handleFileUpload = (e: any) => {
+    const files = Array.from(e.target.files);
+    if (files.length === 0) return;
+
+    // Clear existing uploads if any
+    setUploadedImages([]);
+    setImages([]);
+
+    // Cap at required photos based on layout
+    const filesToProcess = files.slice(0, requiredPhotos);
+    setUploadProgress(0);
+
+    const processedImages: any = [];
+    let processed = 0;
+
+    filesToProcess.forEach((file: any, index) => {
+      // Check if file is an image
+      if (!file.type.match("image.*")) {
+        alert(`File ${file.name} is not an image. Please upload only image files.`);
+        return;
+      }
+
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        // Create an image to get dimensions
+        const img: any = new Image();
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          const ctx: any = canvas.getContext("2d");
+
+          // Use 3:4 aspect ratio for photo strip
+          canvas.width = 2560;
+          canvas.height = 1440;
+
+          // Fill with white background first
+          ctx.fillStyle = "#FFFFFF";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          // Calculate how to fit and center the image
+          let drawWidth, drawHeight, startX, startY;
+          const imageRatio = img.width / img.height;
+          const canvasRatio = canvas.width / canvas.height;
+
+          if (imageRatio > canvasRatio) {
+            // Image is wider than canvas ratio
+            drawHeight = canvas.height;
+            drawWidth = img.width * (canvas.height / img.height);
+            startX = (canvas.width - drawWidth) / 2;
+            startY = 0;
+          } else {
+            // Image is taller than canvas ratio
+            drawWidth = canvas.width;
+            drawHeight = img.height * (canvas.width / img.width);
+            startX = 0;
+            startY = (canvas.height - drawHeight) / 2;
+          }
+
+          // Draw the image centered
+          ctx.drawImage(img, startX, startY, drawWidth, drawHeight);
+
+          // Apply any selected filter
+          if (filter !== "none") {
+            applyFilterToCanvas(canvas, filter);
+          }
+
+          const processedUrl = canvas.toDataURL("image/jpeg", 1);
+          processedImages[index] = processedUrl;
+
+          processed++;
+          setUploadProgress(Math.round((processed / filesToProcess.length) * 100));
+
+          // When all images are processed, update state
+          if (processed === filesToProcess.length) {
+            // Filter out any undefined entries
+            const filteredImages = processedImages.filter((img: any) => img);
+            setUploadedImages(filteredImages);
+            setImages(filteredImages);
+
+            // If we have fewer than required photos, tell the user
+            if (filteredImages.length < requiredPhotos) {
+              alert(
+                `You've uploaded ${filteredImages.length} image${filteredImages.length !== 1 ? "s" : ""}. For the best photo strip, please upload exactly ${requiredPhotos} images.`
+              );
+
+              return;
+            }
+          }
+        };
+
+        img.src = e.target.result;
+      };
+
+      reader.readAsDataURL(file);
+    });
+  };
+
+  // Switch mode between capture and upload
+  const switchMode = (newMode: string) => {
+    setMode(newMode);
+    setImages([]);
+    setUploadedImages([]);
+    setUploadProgress(0);
+
+    if (newMode === "capture") {
+      startCamera();
+    } else {
+      stopCamera();
+    }
+  };
+
+  // Stop camera
+  const stopCamera = () => {
+    if (videoRef.current && videoRef.current.srcObject) {
+      const tracks = videoRef.current.srcObject.getTracks();
+      tracks.forEach((track: any) => track.stop());
+      videoRef.current.srcObject = null;
+    }
+  };
+
+  // Proceed to preview with uploaded images
+  const proceedToPreview = () => {
+    if (uploadedImages.length <= 3) {
+      alert("Please upload 4 images to create a photo strip.");
+      return;
+    }
+
+    setCapturedImages([...uploadedImages]);
+    navigate.push("/preview");
+  };
+
   return (
     <PhotoBoothScreenWrapper>
       <div className="photo-booth">
+        <div
+          className="mode-selection"
+          style={{ marginTop: "40px", marginBottom: "20px", display: "flex", gap: "16px" }}
+        >
+          <button
+            onClick={() => switchMode("capture")}
+            className={mode === "capture" ? "active-mode" : ""}
+            style={{
+              backgroundColor: mode === "capture" ? "#000000" : "transparent",
+              color: mode === "capture" ? "white" : "black",
+              padding: "10px 16px",
+              border: "2px solid #333",
+              borderRadius: "25px",
+              fontSize: "0.9rem",
+              fontWeight: "bold",
+              transition: "all 0.3s ease",
+              width: "150px",
+              maxWidth: "150px",
+            }}
+          >
+            Camera
+          </button>
+          <button
+            disabled={capturing}
+            onClick={() => switchMode("upload")}
+            className={mode === "upload" ? "active-mode" : ""}
+            style={{
+              backgroundColor: mode === "upload" ? "#000000" : "transparent",
+              color: mode === "upload" ? "white" : "black",
+              padding: "10px 16px",
+              border: "2px solid #333",
+              borderRadius: "25px",
+              fontSize: "0.9rem",
+              fontWeight: "bold",
+              transition: "all 0.3s ease",
+              width: "150px",
+              maxWidth: "150px",
+            }}
+          >
+            Upload Images
+          </button>
+        </div>
+
         {countdown !== null && <h2 className="countdown animate">{countdown}</h2>}
 
-        <div className="photo-container">
-          <div className="camera-container">
-            <video
-              ref={videoRef}
-              autoPlay
-              playsInline
-              muted
-              disablePictureInPicture
-              disableRemotePlayback
-              className="video-feed"
-              style={{
-                filter: cssFilter,
-                // width: "100%",
-                // height: "100%",
-                objectFit: "cover",
-              }}
+        {mode === "capture" && (
+          <div className="photo-container">
+            <div className="camera-container">
+              <video
+                ref={videoRef}
+                autoPlay
+                playsInline
+                muted
+                disablePictureInPicture
+                disableRemotePlayback
+                className="video-feed"
+                style={{
+                  filter: cssFilter,
+                  // width: "100%",
+                  // height: "100%",
+                  objectFit: "cover",
+                }}
+              />
+              <canvas ref={canvasRef} className="hidden" />
+            </div>
+
+            <div className="preview-side">
+              {capturedImages.map((image: any, index: any) => (
+                <img key={index} src={image} alt={`Captured ${index + 1}`} className="side-preview" />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {mode === "upload" && (
+          <div className="upload-container" style={{ marginBottom: "20px" }}>
+            <div className="upload-instructions" style={{ marginBottom: "15px" }}>
+              <p>Choose {requiredPhotos} images from your photos to create a photo strip.</p>
+            </div>
+
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handleFileUpload}
+              ref={fileInputRef}
+              style={{ display: "none" }}
             />
-            <canvas ref={canvasRef} className="hidden" />
+
+            <button onClick={() => fileInputRef.current.click()} style={{ marginBottom: "15px" }}>
+              Select Images
+            </button>
+
+            {uploadProgress > 0 && uploadProgress < 100 && (
+              <div className="upload-progress" style={{ marginBottom: "15px" }}>
+                <div style={{ width: "100%", backgroundColor: "#f0f0f0", borderRadius: "10px", height: "10px" }}>
+                  <div
+                    style={{
+                      width: `${uploadProgress}%`,
+                      backgroundColor: "#ff9be4",
+                      height: "10px",
+                      borderRadius: "10px",
+                      transition: "width 0.3s ease-in-out",
+                    }}
+                  />
+                </div>
+                <p style={{ fontSize: "0.8rem", marginTop: "5px" }}>Processing images: {uploadProgress}%</p>
+              </div>
+            )}
+
+            {uploadedImages.length > 0 && (
+              <div className="upload-preview-container" style={{ marginTop: "20px" }}>
+                <h3>Uploaded Images</h3>
+                <div
+                  className="preview-side"
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "100%",
+                    gap: "10px",
+                    marginTop: "10px",
+                    alignItems: "center",
+                  }}
+                >
+                  {uploadedImages.map((image, index) => (
+                    <img
+                      key={index}
+                      src={image}
+                      alt={`Uploaded ${index + 1}`}
+                      className="side-preview"
+                      style={{
+                        width: "160px",
+                        height: "120px",
+                        objectFit: "cover",
+                        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                        marginBottom: "10px",
+                      }}
+                    />
+                  ))}
+                </div>
+
+                <button onClick={proceedToPreview} style={{ marginTop: "20px" }} disabled={uploadedImages.length === 0}>
+                  Continue to Photo Strip Editor
+                </button>
+              </div>
+            )}
           </div>
+        )}
 
-          <div className="preview-side">
-            {capturedImages.map((image: any, index: any) => (
-              <img key={index} src={image} alt={`Captured ${index + 1}`} className="side-preview" />
-            ))}
-          </div>
-        </div>
+        {mode === "capture" && (
+          <>
+            <div className="countdown-options">
+              <label>Select Countdown Time:</label>
+              <select
+                onChange={(e) => setCountdownTime(parseInt(e.target.value))}
+                value={countdownTime}
+                disabled={capturing}
+              >
+                <option value={5}>5s</option>
+                <option value={10}>10s</option>
+              </select>
+            </div>
 
-        {/* Countdown Selection */}
-        <div className="countdown-options">
-          <label>Select Countdown Time:</label>
-          <select
-            onChange={(e) => setCountdownTime(parseInt(e.target.value))}
-            value={countdownTime}
-            disabled={capturing}
-          >
-            <option value={5}>5s</option>
-            <option value={10}>10s</option>
-          </select>
-        </div>
+            <div className="controls">
+              <button onClick={startCountdown} disabled={capturing}>
+                {capturing ? "Capturing..." : "Start Capture :)"}
+              </button>
+            </div>
 
-        <div className="controls">
-          <button onClick={startCountdown} disabled={capturing}>
-            {capturing ? "Capturing..." : "Start Capture :)"}
-          </button>
-        </div>
+            <p className="filter-prompt">Choose a filter before starting capture!</p>
 
-        <p className="filter-prompt">Choose a filter before starting capture!</p>
+            <div className="filters">
+              <button onClick={() => setFilter("none")} disabled={capturing}>
+                Normal
+              </button>
 
-        <div className="filters">
-          <button onClick={() => setFilter("none")} disabled={capturing}>
-            Normal
-          </button>
+              <button onClick={() => setFilter("brighten")} disabled={capturing}>
+                Brighten
+              </button>
 
-          <button onClick={() => setFilter("brighten")} disabled={capturing}>
-            Brighten
-          </button>
-
-          <button onClick={() => setFilter("smooth")} disabled={capturing}>
-            Smooth
-          </button>
-        </div>
+              <button onClick={() => setFilter("smooth")} disabled={capturing}>
+                Smooth
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </PhotoBoothScreenWrapper>
   );
-
 };
 
 export default PhotoBoothScreen;

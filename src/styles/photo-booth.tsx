@@ -741,7 +741,6 @@ export const styleBooth = css`
     gap: 10px;
     padding: 10px;
     min-width: 120px;
-    margin-left: 20px;
     margin-top: -120px;
   }
 

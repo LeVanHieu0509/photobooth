@@ -219,16 +219,16 @@ const PhotoPreviewScreen = () => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const imgWidth = 415;
-    const imgHeight = 305;
+    const imgWidth = 500;
+    const imgHeight = 400;
     const borderSize = 35;
-    const photoSpacing = 15;
+    const photoSpacing = 12;
     const textHeight = 50;
     const totalHeight = imgHeight * 4 + photoSpacing * 3 + borderSize * 2 + textHeight;
     const scale = 2.03; // Adjust this value to change the size of the canvas
 
     const frameImg = new Image();
-    frameImg.src = `${process.env.basePath}/img/serenity.png`;
+    frameImg.src = `${process.env.basePath}/img/Khung1.png`;
 
     frameImg.onload = async () => {
       // Setup canvas size and scale
@@ -411,6 +411,13 @@ const PhotoPreviewScreen = () => {
     }
   };
 
+  const handleShareToFacebook = async () => {
+    if (qrCodeUrl) {
+      const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(qrCodeUrl)}/`;
+      window.open(facebookShareUrl, "_blank");
+    }
+  };
+
   return (
     <PhotoPreviewScreenWrapper>
       {" "}
@@ -432,7 +439,7 @@ const PhotoPreviewScreen = () => {
           <div className="action-buttons">
             <button onClick={downloadPhotoStrip}> Download Photo Strip</button>
             <button onClick={generateQRCode} disabled={isGeneratingQR}>
-              {isGeneratingQR ? "Generating..." : " Download via QR Code"}
+              {isGeneratingQR ? "Generating..." : "QR Code or Share"}
             </button>
             <button onClick={() => navigate.push("/photobooth")}> Take New Photos</button>
           </div>
@@ -440,19 +447,6 @@ const PhotoPreviewScreen = () => {
           {qrCodeUrl && (
             <div className="qr-code-section">
               <h3>QR Code</h3>
-              {/* <img
-                src={qrCodeUrl}
-                alt="QR Code for photo access"
-                style={{
-                  maxWidth: "200px",
-                  margin: "10px auto",
-                  display: "block",
-                  border: "1px solid #ddd",
-                  padding: "10px",
-                  background: "white",
-                  borderRadius: "5px",
-                }}
-              /> */}
 
               <div style={{ height: "auto", margin: "0 auto", maxWidth: 200, width: "100%" }}>
                 <QRCode
@@ -464,6 +458,9 @@ const PhotoPreviewScreen = () => {
               </div>
 
               <button onClick={() => copyToClipboard(qrCodeUrl)}>Copy Link</button>
+              <div className="action-buttons">
+                <button onClick={handleShareToFacebook}>Share To Facebook</button>
+              </div>
               {copied && <p style={{ color: "green", fontSize: "14px" }}>Link copied!</p>}
             </div>
           )}
