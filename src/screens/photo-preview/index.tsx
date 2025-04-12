@@ -219,10 +219,10 @@ const PhotoPreviewScreen = () => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const imgWidth = 500;
-    const imgHeight = 400;
+    const imgWidth = 415;
+    const imgHeight = 305;
     const borderSize = 35;
-    const photoSpacing = 12;
+    const photoSpacing = 15;
     const textHeight = 50;
     const totalHeight = imgHeight * 4 + photoSpacing * 3 + borderSize * 2 + textHeight;
     const scale = 2.03; // Adjust this value to change the size of the canvas
