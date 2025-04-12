@@ -10,9 +10,9 @@ const baseUrl = process.env.NEXT_GRAPHQL_API_ENDPOINT
 export async function generateMetadata({ params }: any) {
   return {
     title: {
-      default: "Homepage",
+      default: "Pose-n-Sen",
     },
-    description: "Homepage", //description
+    description: "Where every pose meets a petal.", //description
     metadataBase: new URL(baseUrl),
     openGraph: {
       title: "", //og:title
