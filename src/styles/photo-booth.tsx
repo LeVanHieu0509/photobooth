@@ -13,12 +13,7 @@ export const styleBooth = css`
     min-height: 100vh;
     width: 100%;
     overflow-x: hidden;
-    background: radial-gradient(
-      circle at center,
-      rgba(255, 153, 178, 0.5) 20%,
-      rgba(255, 240, 245, 0.9) 40%,
-      rgba(255, 250, 250, 1) 70%
-    );
+   
     background-size: cover;
     background-position: center top;
   }

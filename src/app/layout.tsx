@@ -69,7 +69,12 @@ const highLinefont = localFont({
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="vi" className={`${highLinefont.variable}`}>
+    <html 
+    
+    lang="vi" className={`${highLinefont.variable}`}>
+      <head>
+       <link rel="icon" href="/img/poseLogo.svg" sizes="any" type="image/x-icon" />
+      </head>
       <StyledComponentsRegistry>
         <body>
           <AppWrapper>{children}</AppWrapper>
