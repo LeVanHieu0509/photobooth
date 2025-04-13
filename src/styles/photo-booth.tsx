@@ -177,12 +177,7 @@ export const styleBooth = css`
     height: 100vh;
     margin: 0 auto;
     padding: 60px;
-    background: radial-gradient(
-      circle at center,
-      rgba(255, 153, 178, 0.5) 20%,
-      rgba(255, 240, 245, 0.9) 40%,
-      rgba(255, 250, 250, 1) 60%
-    );
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -217,12 +212,7 @@ export const styleBooth = css`
     width: 100%;
     padding: 20px;
     height: 100vh;
-    background: radial-gradient(
-      circle at center,
-      rgba(255, 153, 178, 0.5) 20%,
-      rgba(255, 240, 245, 0.9) 40%,
-      rgba(255, 250, 250, 1) 70%
-    );
+   
     overflow: hidden;
     animation: pulse 5s infinite alternate ease-in-out;
     background-repeat: no-repeat;
@@ -369,12 +359,7 @@ export const styleBooth = css`
     min-height: 100vh;
     text-align: center;
     padding: 10px;
-    background: radial-gradient(
-      circle at center,
-      rgba(255, 153, 178, 0.5) 20%,
-      rgba(255, 240, 245, 0.9) 40%,
-      rgba(255, 250, 250, 1) 70%
-    );
+  
   }
 
   /* Camera Container */
@@ -424,12 +409,7 @@ export const styleBooth = css`
     min-height: 100vh;
     width: 100%;
     overflow-x: hidden;
-    background: radial-gradient(
-      circle at center,
-      rgba(255, 153, 178, 0.5) 20%,
-      rgba(255, 240, 245, 0.9) 40%,
-      rgba(255, 250, 250, 1) 70%
-    );
+  
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
@@ -458,12 +438,7 @@ export const styleBooth = css`
     text-align: center;
     width: 100%;
     margin-top: 0px;
-    background: radial-gradient(
-      circle at center,
-      rgba(255, 153, 178, 0.5) 20%,
-      rgba(255, 240, 245, 0.9) 40%,
-      rgba(255, 250, 250, 1) 70%
-    );
+    
   }
 
   .photo-preview canvas {
@@ -575,12 +550,7 @@ export const styleBooth = css`
     text-align: center;
     min-height: 100vh;
     padding: 150px 20px;
-    background: radial-gradient(
-      circle at center,
-      rgba(255, 153, 178, 0.5) 20%,
-      rgba(255, 240, 245, 0.9) 40%,
-      rgba(255, 250, 250, 1) 60%
-    );
+ 
     display: flex;
     padding-bottom: 100px;
   }
