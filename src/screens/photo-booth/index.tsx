@@ -477,7 +477,8 @@ const PhotoBoothScreen = () => {
           >
             Camera
           </button>
-          <button
+          {capturing==false && (
+            <button
             disabled={capturing}
             onClick={() => switchMode("upload")}
             className={mode === "upload" ? "active-mode" : ""}
@@ -496,6 +497,8 @@ const PhotoBoothScreen = () => {
           >
             Upload Images
           </button>
+          )}
+          
         </div>
 
         {countdown !== null && <h2 className="countdown animate">{countdown}</h2>}

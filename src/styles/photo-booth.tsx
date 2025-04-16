@@ -52,6 +52,7 @@ export const styleBooth = css`
   }
 
   .navbar a {
+    border-radius: 10px;
     text-decoration: none;
     color: #333;
     font-weight: bold;
@@ -189,7 +190,7 @@ export const styleBooth = css`
   }
 
   .privacy-container h1 {
-    font-family: var(--fwd-font), "Poppins", sans-serif !important;
+    //font-family: var(--fwd-font), "Poppins", sans-serif !important;
     font-size: 2.5rem;
     margin-bottom: 25px;
   }
@@ -669,14 +670,14 @@ export const styleBooth = css`
   }
 
   button:hover {
-    background: linear-gradient(135deg, #ffc0cb, #ea909f) !important;
+    background: #ff96c8  !important;
     color: white;
     transform: scale(1.05);
   }
 
   button:active {
     transform: scale(0.98);
-    background: linear-gradient(135deg, #ea909f, #ffc0cb);
+    background: #ff96c8;
   }
 
   /* Color Picker Options */
