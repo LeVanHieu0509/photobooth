@@ -182,6 +182,29 @@ const PhotoBoothScreen = () => {
           // }
         }
         break;
+      case "cold":
+        for (let i = 0; i < data.length; i += 4) {
+          // Điều chỉnh độ sáng (brightness) - giảm 5% độ sáng (95%)
+          data[i] = Math.min(255, data[i] * 0.95); // R component
+          data[i + 1] = Math.min(255, data[i + 1] * 0.95); // G component
+          data[i + 2] = Math.min(255, data[i + 2] * 0.95); // B component
+
+          // Điều chỉnh độ tương phản (contrast) - giảm 10% độ tương phản (90%)
+          const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+          data[i] = data[i] * 0.9 + avg * 0.1; // R component
+          data[i + 1] = data[i + 1] * 0.9 + avg * 0.1; // G component
+          data[i + 2] = data[i + 2] * 0.9 + avg * 0.1; // B component
+
+          // Điều chỉnh độ bão hòa (saturation) - tăng độ bão hòa 10% (110%)
+          const avgColor = (data[i] + data[i + 1] + data[i + 2]) / 3;
+          data[i] = data[i] * 1.1 + avgColor * 0.1; // R component
+          data[i + 1] = data[i + 1] * 1.1 + avgColor * 0.1; // G component
+          data[i + 2] = data[i + 2] * 1.1 + avgColor * 0.1; // B component
+
+          // Làm giảm độ ấm của màu đỏ (R) để tạo hiệu ứng lạnh hơn
+          data[i] = Math.min(255, data[i] * 0.9); // Giảm độ ấm cho màu đỏ (R)
+        }
+        break;
 
       default:
         break;
@@ -198,6 +221,9 @@ const PhotoBoothScreen = () => {
         break;
       case "smooth":
         setCssFilter("brightness(102%) contrast(85%) saturate(103%)");
+        break;
+      case "cold":
+        setCssFilter("brightness(95%) contrast(90%) saturate(110%) hue-rotate(10deg) ");
         break;
       default:
         setCssFilter(filter);
@@ -504,7 +530,25 @@ const PhotoBoothScreen = () => {
         {countdown !== null && <h2 className="countdown animate">{countdown}</h2>}
 
         {mode === "capture" && (
-          <div className="photo-container">
+          <div className="photo-container ">
+             <div className="filters flex flex-col gap-2">
+              <button onClick={() => setFilter("none")} disabled={capturing}>
+                Normal
+              </button>
+
+              <button onClick={() => setFilter("brighten")} disabled={capturing}>
+                Brighten
+              </button>
+
+              <button onClick={() => setFilter("smooth")} disabled={capturing}>
+                Smooth
+              </button>
+
+              <button onClick={() => setFilter("cold")} disabled={capturing}>
+                Cold
+              </button>
+            </div>
+
             <div className="camera-container">
               <video
                 ref={videoRef}
@@ -524,7 +568,7 @@ const PhotoBoothScreen = () => {
               <canvas ref={canvasRef} className="hidden" />
             </div>
 
-            <div className="preview-side">
+            <div className="preview-side ml-5 ">
               {capturedImages.map((image: any, index: any) => (
                 <img key={index} src={image} alt={`Captured ${index + 1}`} className="side-preview" />
               ))}
@@ -629,7 +673,7 @@ const PhotoBoothScreen = () => {
 
             <p className="filter-prompt">Choose a filter before starting capture!</p>
 
-            <div className="filters">
+            <div className="filters ">
               <button onClick={() => setFilter("none")} disabled={capturing}>
                 Normal
               </button>

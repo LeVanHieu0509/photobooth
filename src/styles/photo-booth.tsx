@@ -698,6 +698,7 @@ export const styleBooth = css`
     width: 100%;
     max-width: 1200px;
     margin: 20px auto;
+    margin-right: -40px;
   }
 
   /* Fix Photo Strip Thumbnails */
