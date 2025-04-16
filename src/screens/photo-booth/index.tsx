@@ -23,6 +23,7 @@ const PhotoBoothScreen = () => {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [mode, setMode] = useState("capture");
 
+
   const requiredPhotos = 4; // Number of photos required for the photo strip
 
   useEffect(() => {
