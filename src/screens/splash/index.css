@@ -1,7 +1,7 @@
 
 
 .splash-screen-wrapper .splashTitle h1{
-   color: #CF1B6F;
+   color: #ff96c8 ;
    font-size: 160px;
    opacity: 0;
 }
@@ -12,7 +12,7 @@
 }
 
 .splash-screen-wrapper .splash-content .subtitle{
-    color: #CF1B6F;
+    color: #ff96c8 ;
     font-size: 40px;
     margin-top: -50px;
     font-weight: 100;
