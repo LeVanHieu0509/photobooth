@@ -428,13 +428,13 @@ const PhotoBoothScreen = () => {
             setImages(filteredImages);
 
             // If we have fewer than required photos, tell the user
-            if (filteredImages.length < requiredPhotos) {
-              alert(
-                `You've uploaded ${filteredImages.length} image${filteredImages.length !== 1 ? "s" : ""}. For the best photo strip, please upload exactly ${requiredPhotos} images.`
-              );
+            //if (filteredImages.length < requiredPhotos) {
+              //alert(
+                //`You've uploaded ${filteredImages.length} image${filteredImages.length !== 1 ? "s" : ""}. For the best photo strip, please upload exactly ${requiredPhotos} images.`
+              //);
 
-              return;
-            }
+             // return;
+            //}
           }
         };
 

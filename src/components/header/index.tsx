@@ -18,13 +18,18 @@ const Header = ({}: HeaderProps) => {
       <nav className="navbar mt-5 ">
         {isMobileNavOpen ? <Link href="/" className="logo" onClick={closeMobileNav}></Link> : ""}
 
-        {isMobileNavOpen==false ? <Image
+        
+        <Link href="/" >
+          <Image
             priority
             src={logo}
             width={200}
             alt="Follow us on Twitter"
             className="header_logo_poseNsen -mb-14 -mt-14"
-          /> : ""}
+            onClick={()=>{}}
+          /> 
+        </Link>
+
         
         <div className={`nav-links ${isMobileNavOpen ? "open" : ""}`}>
           <Link href="/" onClick={closeMobileNav}>
