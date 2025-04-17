@@ -223,7 +223,7 @@ const PhotoBoothScreen = () => {
         setCssFilter("brightness(102%) contrast(85%) saturate(103%)");
         break;
       case "cold":
-        setCssFilter("brightness(95%) contrast(90%) saturate(110%) hue-rotate(10deg) ");
+        setCssFilter("brightness(94%) contrast(100%) saturate(110%) hue-rotate(13deg) ");
         break;
       default:
         setCssFilter(filter);
@@ -671,6 +671,7 @@ const PhotoBoothScreen = () => {
               </button>
             </div>
 
+            {/* Đây là một comment trong JSX 
             <p className="filter-prompt">Choose a filter before starting capture!</p>
 
             <div className="filters ">
@@ -685,7 +686,10 @@ const PhotoBoothScreen = () => {
               <button onClick={() => setFilter("smooth")} disabled={capturing}>
                 Smooth
               </button>
+
+         
             </div>
+            */}
           </>
         )}
       </div>
