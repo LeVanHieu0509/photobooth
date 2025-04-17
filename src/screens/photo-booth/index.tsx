@@ -23,7 +23,6 @@ const PhotoBoothScreen = () => {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [mode, setMode] = useState("capture");
 
-
   const requiredPhotos = 4; // Number of photos required for the photo strip
 
   useEffect(() => {
@@ -429,11 +428,11 @@ const PhotoBoothScreen = () => {
 
             // If we have fewer than required photos, tell the user
             //if (filteredImages.length < requiredPhotos) {
-              //alert(
-                //`You've uploaded ${filteredImages.length} image${filteredImages.length !== 1 ? "s" : ""}. For the best photo strip, please upload exactly ${requiredPhotos} images.`
-              //);
+            //alert(
+            //`You've uploaded ${filteredImages.length} image${filteredImages.length !== 1 ? "s" : ""}. For the best photo strip, please upload exactly ${requiredPhotos} images.`
+            //);
 
-             // return;
+            // return;
             //}
           }
         };
@@ -504,35 +503,34 @@ const PhotoBoothScreen = () => {
           >
             Camera
           </button>
-          {capturing==false && (
+          {capturing == false && (
             <button
-            disabled={capturing}
-            onClick={() => switchMode("upload")}
-            className={mode === "upload" ? "active-mode" : ""}
-            style={{
-              backgroundColor: mode === "upload" ? "#000000" : "transparent",
-              color: mode === "upload" ? "white" : "black",
-              padding: "10px 16px",
-              border: "2px solid #333",
-              borderRadius: "25px",
-              fontSize: "0.9rem",
-              fontWeight: "bold",
-              transition: "all 0.3s ease",
-              width: "150px",
-              maxWidth: "150px",
-            }}
-          >
-            Upload Images
-          </button>
+              disabled={capturing}
+              onClick={() => switchMode("upload")}
+              className={mode === "upload" ? "active-mode" : ""}
+              style={{
+                backgroundColor: mode === "upload" ? "#000000" : "transparent",
+                color: mode === "upload" ? "white" : "black",
+                padding: "10px 16px",
+                border: "2px solid #333",
+                borderRadius: "25px",
+                fontSize: "0.9rem",
+                fontWeight: "bold",
+                transition: "all 0.3s ease",
+                width: "150px",
+                maxWidth: "150px",
+              }}
+            >
+              Upload Images
+            </button>
           )}
-          
         </div>
 
         {countdown !== null && <h2 className="countdown animate">{countdown}</h2>}
 
         {mode === "capture" && (
           <div className="photo-container ">
-             <div className="filters flex flex-col gap-2">
+            <div className="filters flex flex-col gap-2">
               <button onClick={() => setFilter("none")} disabled={capturing}>
                 Normal
               </button>

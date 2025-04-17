@@ -418,13 +418,19 @@ const PhotoPreviewScreen = () => {
     }
   };
 
+  useEffect(() => {
+    if (capturedImages.length == 0 || !capturedImages) {
+      navigate.push("/photobooth");
+    }
+  }, []);
+
   return (
     <PhotoPreviewScreenWrapper>
       {" "}
       <div className="photo-preview">
         <h2>Photo Strip Preview</h2>
 
-        <div className="control-section">
+        <div className="control-section-top">
           <p className="section-title">Frames</p>
           <div className="frame-options">
             <button onClick={() => setSelectedFrame("serenity")}>Dreamy</button>
@@ -435,7 +441,7 @@ const PhotoPreviewScreen = () => {
 
         <canvas ref={stripCanvasRef} className="photo-strip" />
 
-        <div className="control-section">
+        <div className="control-section-bottom">
           <div className="action-buttons">
             <button onClick={downloadPhotoStrip}> Download Photo Strip</button>
             <button onClick={generateQRCode} disabled={isGeneratingQR}>

@@ -13,7 +13,7 @@ export const styleBooth = css`
     min-height: 100vh;
     width: 100%;
     overflow-x: hidden;
-   
+
     background-size: cover;
     background-position: center top;
   }
@@ -179,7 +179,7 @@ export const styleBooth = css`
     height: 100vh;
     margin: 0 auto;
     padding: 60px;
-    
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -214,7 +214,7 @@ export const styleBooth = css`
     width: 100%;
     padding: 20px;
     height: 100vh;
-   
+
     overflow: hidden;
     animation: pulse 5s infinite alternate ease-in-out;
     background-repeat: no-repeat;
@@ -361,7 +361,6 @@ export const styleBooth = css`
     min-height: 100vh;
     text-align: center;
     padding: 10px;
-  
   }
 
   /* Camera Container */
@@ -411,7 +410,7 @@ export const styleBooth = css`
     min-height: 100vh;
     width: 100%;
     overflow-x: hidden;
-  
+
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
@@ -440,7 +439,6 @@ export const styleBooth = css`
     text-align: center;
     width: 100%;
     margin-top: 0px;
-    
   }
 
   .photo-preview canvas {
@@ -448,7 +446,7 @@ export const styleBooth = css`
     width: 100%;
     height: auto !important;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;
+    margin-top: -245px;
   }
 
   .photo-preview img {
@@ -460,9 +458,15 @@ export const styleBooth = css`
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   }
 
-  .control-section {
+  .control-section-top {
     margin: 10px 0;
     padding: 5px;
+  }
+
+  .control-section-bottom {
+    margin: 10px 0;
+    padding: 5px;
+    margin-top: -245px;
   }
 
   .control-section h3 {
@@ -484,7 +488,6 @@ export const styleBooth = css`
   .section-title {
     font-size: 0.9rem;
     color: #666;
-    margin: 15px 0 8px 0;
     text-align: center;
   }
 
@@ -542,6 +545,7 @@ export const styleBooth = css`
     margin-bottom: 5px;
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    scale: 0.5;
   }
 
   .welcome-container {
@@ -552,7 +556,7 @@ export const styleBooth = css`
     text-align: center;
     min-height: 100vh;
     padding: 150px 20px;
- 
+
     display: flex;
     padding-bottom: 100px;
   }
@@ -671,7 +675,7 @@ export const styleBooth = css`
   }
 
   button:hover {
-    background: #ff96c8  !important;
+    background: #ff96c8 !important;
     color: white;
     transform: scale(1.05);
   }
