@@ -431,7 +431,7 @@ export const styleBooth = css`
 
   /* Photo Strip Preview */
   .photo-preview {
-    padding-top: 60px;
+    padding-top: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -447,6 +447,7 @@ export const styleBooth = css`
     height: auto !important;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     margin-top: -245px;
+    margin-left: -60px;
   }
 
   .photo-preview img {
@@ -495,7 +496,7 @@ export const styleBooth = css`
     display: flex;
     gap: 5px;
     justify-content: center;
-    margin: 20px 0;
+    flex-direction: column;
   }
 
   .email-section {
@@ -1260,7 +1261,7 @@ export const styleBooth = css`
   /* Landscape mode adjustments for mobile devices */
   @media (max-height: 500px) and (orientation: landscape) {
     .photo-booth {
-      padding-top: 60px;
+      padding-top: 30px;
     }
 
     .camera-container {

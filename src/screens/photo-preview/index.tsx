@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import QRCode from "react-qr-code";
 import { PhotoPreviewScreenWrapper } from "./styled";
+import { Flex } from "@/styles/common";
 
 interface PhotoPreviewScreenProps {}
 /* N */
@@ -189,7 +190,6 @@ const PhotoPreviewScreen = () => {
   const [qrCodeUrl, setQrCodeUrl] = useState<any>("");
   const [isGeneratingQR, setIsGeneratingQR] = useState<any>(false);
   const [qrCodeStatus, setQrCodeStatus] = useState<any>("");
-  const [isModalOpen, setIsModalOpen] = useState<any>(false); // to add pop up qr code
   const [copied, setCopied] = useState<any>(false);
   const { capturedImages } = useContext(AppContext);
 
@@ -367,7 +367,6 @@ const PhotoPreviewScreen = () => {
   const generateQRCode = async () => {
     try {
       setIsGeneratingQR(true);
-      setQrCodeStatus("Generating QR code...");
       setQrCodeUrl("");
 
       // Optimize the canvas image before sending
@@ -424,6 +423,12 @@ const PhotoPreviewScreen = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (selectedFrame) {
+      setQrCodeUrl("");
+    }
+  }, [selectedFrame]);
+
   return (
     <PhotoPreviewScreenWrapper>
       {" "}
@@ -438,39 +443,41 @@ const PhotoPreviewScreen = () => {
             <button onClick={() => setSelectedFrame("enternal")}>Froggy</button>
           </div>
         </div>
+        <Flex align="center">
+          <div className="control-section-bottom">
+            <div className="action-buttons" style={{ paddingTop: `${qrCodeUrl ? "165px" : "0px"} ` }}>
+              <button onClick={() => navigate.push("/photobooth")}> Take New Photos</button>
+              <button onClick={downloadPhotoStrip}> Download Photo Strip</button>
 
-        <canvas ref={stripCanvasRef} className="photo-strip" />
+              <button onClick={generateQRCode} disabled={isGeneratingQR}>
+                {isGeneratingQR ? "Generating..." : "QR Code or Share"}
+              </button>
+            </div>
 
-        <div className="control-section-bottom">
-          <div className="action-buttons">
-            <button onClick={downloadPhotoStrip}> Download Photo Strip</button>
-            <button onClick={generateQRCode} disabled={isGeneratingQR}>
-              {isGeneratingQR ? "Generating..." : "QR Code or Share"}
-            </button>
-            <button onClick={() => navigate.push("/photobooth")}> Take New Photos</button>
+            {qrCodeUrl && (
+              <div className="qr-code-section">
+                <h3>QR Code</h3>
+
+                <div style={{ height: "auto", margin: "0 auto", maxWidth: 200, width: "100%" }}>
+                  <QRCode
+                    size={256}
+                    style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                    value={qrCodeUrl}
+                    viewBox={`0 0 512 512`}
+                  />
+                </div>
+
+                <button onClick={() => copyToClipboard(qrCodeUrl)}>Copy Link</button>
+                <div className="action-buttons">
+                  <button onClick={handleShareToFacebook}>Share To Facebook</button>
+                </div>
+                {copied && <p style={{ color: "green", fontSize: "14px" }}>Link copied!</p>}
+              </div>
+            )}
           </div>
 
-          {qrCodeUrl && (
-            <div className="qr-code-section">
-              <h3>QR Code</h3>
-
-              <div style={{ height: "auto", margin: "0 auto", maxWidth: 200, width: "100%" }}>
-                <QRCode
-                  size={256}
-                  style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-                  value={qrCodeUrl}
-                  viewBox={`0 0 512 512`}
-                />
-              </div>
-
-              <button onClick={() => copyToClipboard(qrCodeUrl)}>Copy Link</button>
-              <div className="action-buttons">
-                <button onClick={handleShareToFacebook}>Share To Facebook</button>
-              </div>
-              {copied && <p style={{ color: "green", fontSize: "14px" }}>Link copied!</p>}
-            </div>
-          )}
-        </div>
+          <canvas ref={stripCanvasRef} className="photo-strip" />
+        </Flex>
       </div>
     </PhotoPreviewScreenWrapper>
   );
