@@ -765,7 +765,7 @@ export const styleBooth = css`
   .home-container,
   .background-gradient {
     margin-top: 0;
-    padding-top: 80px;
+    //padding-top: 80px;
   }
 
   /* Ensure the Footer Stays at the Bottom */
@@ -1084,6 +1084,7 @@ export const styleBooth = css`
 
     .privacy-container {
       padding: 20px;
+      margin-top: -20px;
       width: 90%;
     }
 
