@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const HomepageWrapper = styled.div`
   .home-container {
-    padding-top: 100px;
+    padding-top: 160px;
   }
 
   .footer{
@@ -16,7 +16,7 @@ export const HomepageWrapper = styled.div`
 
   @media ${device.mobile} {
     .home-container {
-      padding-top: 0px;
+      padding-top: 100px;
     }
   }
 `;

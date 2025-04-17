@@ -3,6 +3,9 @@ import React, { useContext } from "react";
 import { HeaderWrapper } from "./styled";
 import Link from "next/link";
 import AppContext from "@/contexts/app";
+import Image from 'next/image';
+import logo from '../../../public/img/bruh.svg';
+
 
 interface HeaderProps {}
 
@@ -15,6 +18,14 @@ const Header = ({}: HeaderProps) => {
       <nav className="navbar mt-5 ">
         {isMobileNavOpen ? <Link href="/" className="logo" onClick={closeMobileNav}></Link> : ""}
 
+        {isMobileNavOpen==false ? <Image
+            priority
+            src={logo}
+            width={200}
+            alt="Follow us on Twitter"
+            className="header_logo_poseNsen -mb-14 -mt-14"
+          /> : ""}
+        
         <div className={`nav-links ${isMobileNavOpen ? "open" : ""}`}>
           <Link href="/" onClick={closeMobileNav}>
             Home
