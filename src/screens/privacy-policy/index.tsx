@@ -8,7 +8,7 @@ const PrivacyPolicyScreen = () => {
   return (
     <PrivacyPolicyScreenWrapper>
       <div className="background-gradient h-screen flex flex-col justify-center items-center text-center">
-        <div className="privacy-container">
+        <div className="privacy-container ">
           <Container>
             <h1 className={`text-4xl font-bold mb-4 privacy-title }`}>Privacy Policy</h1>
             <p className="text-lg text-gray-700 mb-4">

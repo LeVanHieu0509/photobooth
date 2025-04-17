@@ -125,5 +125,19 @@
         animation:fadeUpMB  0.5s  forwards;
         animation-delay: 1.3s;
     }
-    
+}
+
+@media (min-width: 577px) and (max-width: 992px) {
+    .splash-screen-wrapper .splashTitle h1{
+        font-size: 70px;
+    }
+    .splash-screen-wrapper .splashTitle{
+        margin-top: -30px;
+    }
+    .splash-screen-wrapper .splash-content .subtitle{
+        font-size: 25px;
+        margin-top: -180px;
+        animation:fadeUpMB  0.5s  forwards;
+        animation-delay: 1.3s;
+    }
 }

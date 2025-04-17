@@ -19,14 +19,15 @@ export const styleBooth = css`
   }
 
   .navbar {
-    width: auto;
-    max-width: 100%;
+    width: 100%;
+    //max-width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 10px;
-    padding: 0;
-    background: transparent !important;
+    padding-left: 30px;
+    padding-right: 30px;
+    //background: transparent !important;
     border-bottom: none;
     position: absolute;
     top: 0;
@@ -48,7 +49,7 @@ export const styleBooth = css`
     background-color: rgba(255, 255, 255, 0.7);
     border-radius: 30px;
     padding: 5px 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    //box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
 
   .navbar a {
@@ -66,7 +67,7 @@ export const styleBooth = css`
 
   .navbar a:hover {
     color: #afcaa6;
-    background: rgba(240, 240, 240, 0.5) !important;
+    //background: rgba(240, 240, 240, 0.5) !important;
   }
 
   .navbar a:active {
@@ -698,6 +699,7 @@ export const styleBooth = css`
     width: 100%;
     max-width: 1200px;
     margin: 20px auto;
+    margin-right: -40px;
   }
 
   /* Fix Photo Strip Thumbnails */
@@ -764,7 +766,7 @@ export const styleBooth = css`
   .home-container,
   .background-gradient {
     margin-top: 0;
-    padding-top: 80px;
+    //padding-top: 80px;
   }
 
   /* Ensure the Footer Stays at the Bottom */
@@ -1083,6 +1085,7 @@ export const styleBooth = css`
 
     .privacy-container {
       padding: 20px;
+      margin-top: -20px;
       width: 90%;
     }
 
@@ -1135,7 +1138,8 @@ export const styleBooth = css`
     .navbar {
       padding: 5px;
       background: none !important;
-      justify-content: flex-end;
+      justify-content: space-between;
+      align-items: center;
       padding-right: 40px;
       width: 100%;
       padding: 10px 20px;

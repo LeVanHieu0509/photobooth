@@ -31,7 +31,8 @@ const HomepageScreen = ({}: HomepageProps) => {
     <HomepageWrapper>
       <div className=" background-gradient h-screen flex  flex-col justify-center items-center text-center ">
         {HandleRenderSplash()}
-        <div className="home-container">
+        <div className="home-container ">
+          
           <Image
             priority
             src={logo}
