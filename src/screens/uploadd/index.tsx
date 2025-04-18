@@ -22,12 +22,12 @@ const UploadScreen = () => {
   const { setCapturedImages } = useContext(AppContext);
   const [uploadedImages, setUploadedImages] = useState([]);
   const [uploadProgress, setUploadProgress] = useState(0);
-  const [mode, setMode] = useState("capture");
+  const [mode, setMode] = useState("upload");
 
   const requiredPhotos = 4; // Number of photos required for the photo strip
 
   useEffect(() => {
-    startCamera();
+    //startCamera();
 
     const checkMobile = () => {
       const win = window as any;
@@ -41,7 +41,7 @@ const UploadScreen = () => {
 
     const handleVisibilityChange = () => {
       if (!document.hidden) {
-        startCamera();
+        //startCamera();
       }
     };
 
@@ -481,37 +481,18 @@ const UploadScreen = () => {
 
   return (
     <UploadScreenWrapper>
-      <div className="photo-booth">
+      <div className="upload-booth">
         <div
           className="mode-selection"
           style={{ marginTop: "40px", marginBottom: "20px", display: "flex", gap: "16px" }}
         >
-          <button
-            onClick={() => switchMode("capture")}
-            className={mode === "capture" ? "active-mode" : ""}
-            style={{
-              backgroundColor: mode === "capture" ? "#000000" : "transparent",
-              color: mode === "capture" ? "white" : "black",
-              padding: "10px 16px",
-              border: "2px solid #333",
-              borderRadius: "25px",
-              fontSize: "0.9rem",
-              fontWeight: "bold",
-              transition: "all 0.3s ease",
-              width: "150px",
-              maxWidth: "150px",
-            }}
-          >
-            Camera
-          </button>
-          {capturing == false && (
+            {/* 
             <button
-              disabled={capturing}
-              onClick={() => switchMode("upload")}
-              className={mode === "upload" ? "active-mode" : ""}
+              onClick={() => switchMode("capture")}
+              className={mode === "capture" ? "active-mode" : ""}
               style={{
-                backgroundColor: mode === "upload" ? "#000000" : "transparent",
-                color: mode === "upload" ? "white" : "black",
+                backgroundColor: mode === "capture" ? "#000000" : "transparent",
+                color: mode === "capture" ? "white" : "black",
                 padding: "10px 16px",
                 border: "2px solid #333",
                 borderRadius: "25px",
@@ -522,9 +503,33 @@ const UploadScreen = () => {
                 maxWidth: "150px",
               }}
             >
-              Upload Images
+              Camera
             </button>
-          )}
+            */}
+          <h1 className={`text-4xl font-bold mb-4 privacy-title }`}>Upload Images</h1>
+             {/* 
+              {capturing == false && (
+                <button
+                  disabled={capturing}
+                  onClick={() => switchMode("upload")}
+                  className={mode === "upload" ? "active-mode" : ""}
+                  style={{
+                    backgroundColor: mode === "upload" ? "#000000" : "transparent",
+                    color: mode === "upload" ? "white" : "black",
+                    padding: "10px 16px",
+                    border: "2px solid #333",
+                    borderRadius: "25px",
+                    fontSize: "0.9rem",
+                    fontWeight: "bold",
+                    transition: "all 0.3s ease",
+                    width: "150px",
+                    maxWidth: "150px",
+                  }}
+                >
+                  Upload Images
+                </button>
+              )}
+             */}
         </div>
 
         {countdown !== null && <h2 className="countdown animate">{countdown}</h2>}
