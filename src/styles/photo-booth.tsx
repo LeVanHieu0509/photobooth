@@ -66,7 +66,7 @@ export const styleBooth = css`
   }
 
   .navbar a:hover {
-    color: #afcaa6;
+    color: #ff69b4;
     //background: rgba(240, 240, 240, 0.5) !important;
   }
 

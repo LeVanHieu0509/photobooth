@@ -35,6 +35,12 @@ const Header = ({}: HeaderProps) => {
           <Link href="/" onClick={closeMobileNav}>
             Home
           </Link>
+          <Link href="/camera" onClick={closeMobileNav}>
+            Camera
+          </Link>
+          <Link href="/uploadd" onClick={closeMobileNav}>
+            Upload
+          </Link>
           <Link href="/privacy-policy" onClick={closeMobileNav}>
             Privacy Policy
           </Link>

@@ -3,9 +3,10 @@
 import AppContext from "@/contexts/app";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useRef, useState } from "react";
-import { PhotoBoothScreenWrapper } from "./styled";
+import { UploadScreenWrapper } from "./styled";
 
-const PhotoBoothScreen = () => {
+
+const UploadScreen = () => {
   const navigate = useRouter();
   const videoRef = useRef<any>(null);
   const canvasRef = useRef<any>(null);
@@ -479,7 +480,7 @@ const PhotoBoothScreen = () => {
   };
 
   return (
-    <PhotoBoothScreenWrapper>
+    <UploadScreenWrapper>
       <div className="photo-booth">
         <div
           className="mode-selection"
@@ -692,8 +693,8 @@ const PhotoBoothScreen = () => {
           </>
         )}
       </div>
-    </PhotoBoothScreenWrapper>
+    </UploadScreenWrapper>
   );
 };
 
-export default PhotoBoothScreen;
+export default UploadScreen;
