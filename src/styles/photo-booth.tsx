@@ -602,7 +602,7 @@ export const styleBooth = css`
     margin-bottom: 80px;
     font-size: 3rem;
     color: black;
-    margin-bottom: 1rem;
+    //margin-bottom: 1rem;
   }
 
   .welcome-container p {
