@@ -33,7 +33,7 @@ const ContactBoothScreen = () => {
     <ContactBoothScreenWrapper>
       <div className="contact-container">
         <div className="contact-form">
-          <h2>Contact Us</h2>
+          <h1 className="text-center">Contact Us</h1>
           <form onSubmit={handleSubmit}>
             <input
               type="text"
