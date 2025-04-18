@@ -57,7 +57,7 @@ export const styleBooth = css`
     text-decoration: none;
     color: #333;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 1.1rem;
     padding: 8px 16px;
     transition: all 0.3s ease;
     background: none !important;

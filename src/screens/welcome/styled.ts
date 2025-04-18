@@ -8,6 +8,10 @@ export const WelcomeWrapper = styled.div`
     p{
     font-family: var(--font-inter) !important;
     }
+
+    h1{
+      color:#ff69b4;
+    }
   }
 
   @media ${device.mobile} {

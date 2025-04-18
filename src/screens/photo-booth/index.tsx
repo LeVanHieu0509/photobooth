@@ -481,6 +481,8 @@ const PhotoBoothScreen = () => {
   return (
     <PhotoBoothScreenWrapper>
       <div className="photo-booth">
+        {/*
+        
         <div
           className="mode-selection"
           style={{ marginTop: "40px", marginBottom: "20px", display: "flex", gap: "16px" }}
@@ -525,7 +527,8 @@ const PhotoBoothScreen = () => {
             </button>
           )}
         </div>
-
+        */}
+        <h1 className={`text-4xl font-bold mb-4 }`}>Camera</h1>
         {countdown !== null && <h2 className="countdown animate">{countdown}</h2>}
 
         {mode === "capture" && (
