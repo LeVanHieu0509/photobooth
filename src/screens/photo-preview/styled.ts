@@ -12,6 +12,10 @@ export const PhotoPreviewScreenWrapper = styled.div`
     font-family: var(--font-inter) !important;
   }
 
+  .photo-preview h1{
+    color: #ff96c8;
+  }
+
   @media ${device.mobile} {
     margin-top: 16px;
   }

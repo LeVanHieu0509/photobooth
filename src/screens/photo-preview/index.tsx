@@ -433,18 +433,22 @@ const PhotoPreviewScreen = () => {
     <PhotoPreviewScreenWrapper>
       {" "}
       <div className="photo-preview">
-        <h2>Photo Strip Preview</h2>
+        <h1>Photo Strip Preview</h1>
 
         <div className="control-section-top">
           <p className="section-title">Frames</p>
           <div className="frame-options">
-            <button onClick={() => setSelectedFrame("serenity")}>Dreamy</button>
-            <button onClick={() => setSelectedFrame("blossom")}>Whisper</button>
             <button onClick={() => setSelectedFrame("enternal")}>Froggy</button>
+            <button onClick={() => setSelectedFrame("blossom")}>Whisper</button>
+            <button onClick={() => setSelectedFrame("serenity")}>Dreamy</button>
           </div>
         </div>
         <Flex align="center">
-          <div className="control-section-bottom">
+          
+
+          <canvas ref={stripCanvasRef} className="photo-strip" />
+        </Flex>
+        <div className="control-section-bottom">
             <div className="action-buttons" style={{ paddingTop: `${qrCodeUrl ? "165px" : "0px"} ` }}>
               <button onClick={() => navigate.push("/photobooth")}> Take New Photos</button>
               <button onClick={downloadPhotoStrip}> Download Photo Strip</button>
@@ -475,9 +479,6 @@ const PhotoPreviewScreen = () => {
               </div>
             )}
           </div>
-
-          <canvas ref={stripCanvasRef} className="photo-strip" />
-        </Flex>
       </div>
     </PhotoPreviewScreenWrapper>
   );

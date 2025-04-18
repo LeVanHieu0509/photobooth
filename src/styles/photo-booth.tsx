@@ -447,7 +447,6 @@ export const styleBooth = css`
     height: auto !important;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     margin-top: -245px;
-    margin-left: -60px;
   }
 
   .photo-preview img {
@@ -609,7 +608,7 @@ export const styleBooth = css`
   .welcome-container p {
     font-size: 1rem;
     margin: 0.5rem 0;
-    max-width: 600px;
+    max-width: 700px;
     color: #000;
   }
 
