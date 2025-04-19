@@ -1043,6 +1043,8 @@ export const styleBooth = css`
     .filters {
       flex-wrap: wrap;
       justify-content: center;
+      flex-direction: row;
+      align-items: center;
     }
 
     .preview-side {

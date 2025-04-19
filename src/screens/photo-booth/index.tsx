@@ -533,7 +533,9 @@ const PhotoBoothScreen = () => {
 
         {mode === "capture" && (
           <div className="photo-container ">
+  
             <div className="filters flex flex-col gap-2">
+              <p className="text-filter">Filter</p>
               <button onClick={() => setFilter("none")} disabled={capturing}>
                 Normal
               </button>
